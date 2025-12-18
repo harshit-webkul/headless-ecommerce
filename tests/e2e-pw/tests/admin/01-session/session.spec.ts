@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { GraphQLClient } from '../../utils/adminApiClient';
-import { logoutMutation } from '../../mutations/session-mutation';
+import { GraphQLClient } from '../../../utils/adminApiClient';
+import { logoutMutation } from '../../../mutations/session-mutation';
 
 test.describe('Admin API Tests', () => {
   let apiClient: GraphQLClient;
@@ -22,5 +22,11 @@ test.describe('Admin API Tests', () => {
 
     expect(response.userLogout.success).toBe(true);
     expect(response.userLogout.message).toContain('Success: User logout successfully.');
+
+      // Clear token manually
+    apiClient.setAdminToken('');
+
+      // Re-login if needed for subsequent tests
+     await apiClient.adminLogin('admin@example.com', 'admin123', true);
   });
 });
