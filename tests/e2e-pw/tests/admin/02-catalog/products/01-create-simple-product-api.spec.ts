@@ -20,24 +20,24 @@ test.describe("Create Simple Product via GraphQL API", () => {
         /**
          * Execute create product mutation
          */
-        const response = await apiClient.execute(createSimpleProductMutation, {
+        const createResponse = await apiClient.execute(createSimpleProductMutation, {
                 input: createProductCredentials
         }, true);
 
-        console.log('Create Product Response:', response);
+        console.log('Create Product Response:', createResponse);
 
-        const filePath = path.resolve(process.cwd(), "create-product-response.json");
+        const filePath = path.resolve(process.cwd(), "create-product-createResponse.json");
 
-        fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
+        fs.writeFileSync(filePath, JSON.stringify(createResponse, null, 2), "utf-8");
 
-        expect(response.createProduct.success).toBe(true);
-        expect(response.createProduct.message).toContain('Product created successfully.');
-        expect(response.createProduct.product).toHaveProperty('id');
-        expect(response.createProduct.product.sku).toBe(createProductCredentials.sku);
-        expect(response.createProduct.product.type).toBe(createProductCredentials.type);
-        expect(response.createProduct.product.attributeFamilyId).toBe(createProductCredentials.attributeFamilyId.toString());
+        expect(createResponse.createProduct.success).toBe(true);
+        expect(createResponse.createProduct.message).toContain('Product created successfully.');
+        expect(createResponse.createProduct.product).toHaveProperty('id');
+        expect(createResponse.createProduct.product.sku).toBe(createProductCredentials.sku);
+        expect(createResponse.createProduct.product.type).toBe(createProductCredentials.type);
+        expect(createResponse.createProduct.product.attributeFamilyId).toBe(createProductCredentials.attributeFamilyId.toString());
 
-        const createdProductId = response.createProduct.product.id;
+        const createdProductId = createResponse.createProduct.product.id;
 
         /**
          * Verify database entry

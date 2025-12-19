@@ -12,10 +12,10 @@ test.describe("update simple product via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createProductResponse = fs.readFileSync(
-        "create-product-response.json",
+        "vendor/bagisto/graphql-api/tests/e2e-pw/create-product-createResponse.json",
         "utf-8"
     );
-    console.log("Create Product Response from file:", createProductResponse);
+    // console.log("Create Product Response from file:", createProductResponse);
 
     test("update product via graphQL api", async () => {
         const randomSuffix = Date.now();
@@ -245,7 +245,7 @@ test.describe("update simple product via GraphQL API", () => {
         /**
          * Execute create product mutation
          */
-        const response = await apiClient.execute(
+        const updateResponse = await apiClient.execute(
             updateCustomizableProductMutation,
             {
                 id: product_id,
@@ -254,17 +254,17 @@ test.describe("update simple product via GraphQL API", () => {
             true
         );
 
-        console.log("Update Product Response:", response);
+        console.log("Update Product Response:", updateResponse);
 
-        const filePath = path.resolve(process.cwd(), "create-product-response.json");
-        fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
+        const filePath = path.resolve(process.cwd(), "create-product-updateResponse.json");
+        fs.writeFileSync(filePath, JSON.stringify(updateResponse, null, 2), "utf-8");
 
-        expect(response.createProduct.success).toBe(true);
-        expect(response.updateProduct.message).toContain(
+        expect(updateResponse.updateProduct.success).toBe(true);
+        expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );
-        expect(response.updateProduct.product).toHaveProperty("id");
-        expect(response.updateProduct.product.sku).toBe(
+        expect(updateResponse.updateProduct.product).toHaveProperty("id");
+        expect(updateResponse.updateProduct.product.sku).toBe(
             updateProductDetails.sku
         );
        

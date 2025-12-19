@@ -1,24 +1,48 @@
-export const createSimpleProductMutation = `
-mutation createSimpleProduct($input: CreateProductInput!) {
-  createProduct(input: $input) {
-    success
-    message
-    product {
-      id
-      sku
-      type
-      parentId
-      attributeFamilyId
-      createdAt
-      updatedAt
-    }
-  }
-}`;
-
-export const updateCustomizableProductMutation = `
-mutation updateSimpleProduct($id: ID!, $input: UpdateProductInput!) {
-    updateProduct(id: $id, input: $input) {
+export const ConfigurableProductMutation = `
+mutation createConfigProduct($input: CreateProductInput!) {
+    createProduct(input: $input) {
         success
+        message
+        product {
+            id
+            sku
+            type
+            parentId
+            attributeFamilyId
+            createdAt
+            updatedAt
+            variants {
+                id
+                sku
+                type
+                parentId
+                attributeFamilyId
+                createdAt
+                updatedAt
+            }
+            attributeFamily {
+                id
+                code
+                name
+                status
+                isUserDefined
+            }
+            superAttributes {
+                id
+                code
+                adminName
+                type
+                position
+            }
+        }
+    }
+}`
+;
+
+export const updateConfigurableProductMutation = `
+mutation updateConfigProduct($id: ID!, $input: UpdateProductInput!) {
+    updateProduct(id: $id, input: $input) {
+    success
         message
         product {
             id
@@ -49,12 +73,35 @@ mutation updateSimpleProduct($id: ID!, $input: UpdateProductInput!) {
             attributeFamilyId
             createdAt
             updatedAt
-            parent {
+            variants {
                 id
-                type
-                attributeFamilyId
                 sku
+                type
                 parentId
+                attributeFamilyId
+                productNumber
+                name
+                shortDescription
+                description
+                urlKey
+                shareURL
+                new
+                featured
+                status
+                guestCheckout
+                visibleIndividually
+                metaTitle
+                metaKeywords
+                metaDescription
+                price
+                specialPrice
+                specialPriceFrom
+                specialPriceTo
+                weight
+                parentId
+                attributeFamilyId
+                createdAt
+                updatedAt
             }
             attributeFamily {
                 id
@@ -65,6 +112,8 @@ mutation updateSimpleProduct($id: ID!, $input: UpdateProductInput!) {
             }
             attributeValues {
                 id
+                productId
+                attributeId
                 locale
                 channel
                 textValue
@@ -74,8 +123,6 @@ mutation updateSimpleProduct($id: ID!, $input: UpdateProductInput!) {
                 dateTimeValue
                 dateValue
                 jsonValue
-                productId
-                attributeId
                 attribute {
                     id
                     code
@@ -147,18 +194,6 @@ mutation updateSimpleProduct($id: ID!, $input: UpdateProductInput!) {
                     status
                 }
             }
-            cacheBaseImage {
-                smallImageUrl
-                mediumImageUrl
-                largeImageUrl
-                originalImageUrl
-            }
-            cacheGalleryImages {
-                smallImageUrl
-                mediumImageUrl
-                largeImageUrl
-                originalImageUrl
-            }
             images {
                 id
                 type
@@ -181,16 +216,6 @@ mutation updateSimpleProduct($id: ID!, $input: UpdateProductInput!) {
                 createdAt
                 updatedAt
             }
-            relatedProducts {
-                id
-            }
-            upSells {
-                id
-            }
-            crossSells {
-                id
-            }
         }
     }
-}`
-;
+}`;

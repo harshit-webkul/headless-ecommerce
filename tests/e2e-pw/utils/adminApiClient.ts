@@ -129,6 +129,8 @@ export class GraphQLClient {
     ): Promise<T> {
         await this.init();
 
+        console.log(`Executing GraphQL Query: ${query} with variables: ${JSON.stringify(variables)} and withAuth: ${withAuth}`);
+
         const response = await this.context!.post(this.baseUrl, {
             data: { query, variables },
             headers: withAuth && this.adminToken ? this.authHeader() : {},
@@ -136,6 +138,7 @@ export class GraphQLClient {
 
         const body = await response.json();
 
+        console.log('GraphQL Response Body:', body);
         // if (body.errors?.length) {
         //     throw new Error(`GraphQL Error:\n${JSON.stringify(body.errors, null, 2)}`);
         // }
