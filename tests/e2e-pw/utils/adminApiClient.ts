@@ -77,7 +77,7 @@ export class GraphQLClient {
         const body = await response.json();
 
         console.log('Login Response Body:', body);
-        console.log('Login Response Body:', body.data?.userLogin?.user);
+        console.log('Login Response Body:', body.data);
 
         expect(response.status()).toBe(200);
         expect(body).toHaveProperty('data.userLogin.success', true);
