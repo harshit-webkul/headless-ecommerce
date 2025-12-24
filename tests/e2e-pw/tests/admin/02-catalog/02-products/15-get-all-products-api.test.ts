@@ -44,7 +44,7 @@ test.describe("Get All Products via GraphQL API", () => {
 
 
         const createProductResponse = fs.readFileSync(
-                "vendor/bagisto/graphql-api/tests/e2e-pw/get-all-products-createResponse.json",
+                "get-all-products-createResponse.json",
                 "utf-8"
             );
         const product_id =  JSON.parse(createProductResponse).products.data[0].id;
