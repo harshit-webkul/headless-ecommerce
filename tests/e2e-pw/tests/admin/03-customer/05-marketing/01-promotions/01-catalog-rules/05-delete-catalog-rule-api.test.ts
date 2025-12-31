@@ -4,7 +4,7 @@ import { GraphQLClient } from "../../../../../utils/adminApiClient";
 import * as fs from "fs";
 import { deleteCatalogRuleMutation } from "../../../../../mutations/catalog-rule/delete-catalog-rule-api-mutation";
 
-test.describe("delete customer group via GraphQL API", () => {
+test.describe("delete catalog rule via GraphQL API", () => {
      let apiClient: GraphQLClient;
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
