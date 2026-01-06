@@ -2,7 +2,7 @@
 
 // Tax Rates Mutations
 export const createTaxRateMutation = `
-    mutation createTaxRate($input: CreateTaxRateInput!) {
+    mutation createTaxRate($input: createTaxRateInput!) {
         createTaxRate(input: $input) {
             success
             message
@@ -27,7 +27,7 @@ export const createTaxRateMutation = `
 `;
 
 export const updateTaxRateMutation = `
-    mutation updateTaxRate($id: ID!, $input: UpdateTaxRateInput!) {
+    mutation updateTaxRate($id: ID!, $input: createTaxRateInput!) {
         updateTaxRate(id: $id, input: $input) {
             success
             message
@@ -62,7 +62,7 @@ export const deleteTaxRateMutation = `
 
 // Tax Categories Mutations
 export const createTaxCategoryMutation = `
-    mutation createTaxCategory($input: CreateTaxCategoryInput!) {
+    mutation createTaxCategory($input: createTaxCategoryInput!) {
         createTaxCategory(input: $input) {
             success
             message
@@ -88,7 +88,7 @@ export const createTaxCategoryMutation = `
 `;
 
 export const updateTaxCategoryMutation = `
-    mutation updateTaxCategory($id: ID!, $input: UpdateTaxCategoryInput!) {
+    mutation updateTaxCategory($id: ID!, $input: createTaxCategoryInput!) {
         updateTaxCategory(id: $id, input: $input) {
             success
             message

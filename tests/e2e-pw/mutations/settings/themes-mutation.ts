@@ -85,7 +85,7 @@ export const deleteThemeMutation = `
 `;
 
 export const getThemesQuery = `
-    query themes($first: Int, $page: Int, $input: FilterThemeInput) {
+    query themes($first: Int, $page: Int, $input: FilterThemesInput) {
         themes(first: $first, page: $page, input: $input) {
             paginatorInfo {
                 count

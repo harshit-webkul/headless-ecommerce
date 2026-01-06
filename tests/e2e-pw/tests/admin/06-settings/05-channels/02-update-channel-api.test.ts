@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createChannelMutation } from "../../../../mutations/settings/channels-mutation";
+import { updateChannelMutation } from "../../../../mutations/settings/channels-mutation";
 import { createInventorySourceMutation } from "../../../../mutations/settings/inventories-mutation";
 import { createLocaleMutation } from "../../../../mutations/settings/locales-mutation";
 import {createCurrencyMutation} from "../../../../mutations/settings/currencies-mutation"
@@ -7,7 +7,7 @@ import { GraphQLClient } from "../../../../utils/adminApiClient";
 import * as fs from "fs";
 import path from "path";
 
-test.describe("Create Channel", () => {
+test.describe("update Channel", () => {
 
     const apiClient = new GraphQLClient(GraphQLClient.baseURL);
     const randomSuffix = Date.now();
@@ -17,7 +17,7 @@ test.describe("Create Channel", () => {
 
     console.log(randomCode);
 
-    test.beforeEach('before create the channel', async () => {
+    test.beforeEach('before update the channel', async () => {
 
         /**
          * Create inventory Source
@@ -123,7 +123,7 @@ test.describe("Create Channel", () => {
 
     });
 
-    test("create channel", async () => {
+    test("update channel", async () => {
         const createInventoryResponse = JSON.parse(
             fs.readFileSync("create-inventory-source-response.json", "utf-8")
         );
@@ -147,6 +147,11 @@ test.describe("Create Channel", () => {
         const currencyId = Number(createResponse?.createCurrency?.currency?.id);
         console.log("currencyId", currencyId);
 
+        const createChannelResponse = JSON.parse(
+            fs.readFileSync("create-channel-response.json", "utf-8")
+        );
+        const channelId = Number(createChannelResponse.createChannel.channel.id);
+        console.log(channelId);
 
         const createInput = {
             code: `fashion_${randomSuffix}`,
@@ -171,20 +176,23 @@ test.describe("Create Channel", () => {
         };
 
         const response = await apiClient.execute(
-            createChannelMutation,
-            { input: createInput },
+            updateChannelMutation,
+            {
+                id :  channelId,
+                input: createInput ,
+            },
             true
         );
 
-        console.log("Create Channel Response:", response);
+        console.log("update Channel Response:", response);
 
         fs.writeFileSync(
-            path.resolve(process.cwd(), "create-channel-response.json"),
+            path.resolve(process.cwd(), "update-channel-response.json"),
             JSON.stringify(response, null, 2),
             "utf-8"
         );
 
-        expect(response.createChannel.success).toBe(true);
-        expect(response.createChannel.channel.code).toBe(createInput.code);
+        expect(response.updateChannel.success).toBe(true);
+        expect(response.updateChannel.channel.code).not.toEqual(createInput.code);
     });
 });

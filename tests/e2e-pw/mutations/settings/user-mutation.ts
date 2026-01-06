@@ -32,7 +32,7 @@ export const createUserMutation = `
 `;
 
 export const updateUserMutation = `
-    mutation updateUser($id: ID!, $input: UpdateUserInput!) {
+    mutation updateUser($id: ID!, $input: CreateUserInput!) {
         updateUser(id: $id, input: $input) {
             success
             message

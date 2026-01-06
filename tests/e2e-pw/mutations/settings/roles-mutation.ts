@@ -19,7 +19,7 @@ export const createRoleMutation = `
 `;
 
 export const updateRoleMutation = `
-    mutation updateRole($id: ID!, $input: UpdateRoleInput!) {
+    mutation updateRole($id: ID!, $input: CreateRoleInput!) {
         updateRole(id: $id, input: $input) {
             success
             message

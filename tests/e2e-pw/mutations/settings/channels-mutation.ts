@@ -92,7 +92,7 @@ export const createChannelMutation = `
 `;
 
 export const updateChannelMutation = `
-    mutation updateChannel($id: ID!, $input: UpdateChannelInput!) {
+    mutation updateChannel($id: ID!, $input: CreateChannelInput!) {
         updateChannel(id: $id, input: $input) {
             success
             message
