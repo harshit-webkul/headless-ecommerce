@@ -28,10 +28,10 @@ test.describe("update simple product via GraphQL API", () => {
             urlKey: `product-updated-number-${randomSuffix}`,
             productNumber: "",
             taxCategoryId: "",
-            new: true,
-            featured: true,
-            visibleIndividually: true,
-            status: true,
+            new: { withAuth: true },
+            featured: { withAuth: true },
+            visibleIndividually: { withAuth: true },
+            status: { withAuth: true },
             guestCheckout: false,
             color: 3,
             size: 9,
@@ -80,7 +80,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Text",
                     type: "TEXT",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 0,
                     maxCharacters: 10,
                     supportedFileExtensions: "",
@@ -93,7 +93,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "TextArea",
                     type: "TEXTAREA",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 1,
                     maxCharacters: 100,
                     supportedFileExtensions: "",
@@ -106,7 +106,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Checkbox",
                     type: "CHECKBOX",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 2,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -126,7 +126,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Radio",
                     type: "RADIO",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 3,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -146,7 +146,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Select",
                     type: "SELECT",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 4,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -166,7 +166,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Multiselect",
                     type: "MULTISELECT",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 5,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -186,7 +186,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Date",
                     type: "DATE",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 6,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -199,7 +199,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "DateTime",
                     type: "DATETIME",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 7,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -212,7 +212,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "Time",
                     type: "TIME",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 8,
                     maxCharacters: 0,
                     supportedFileExtensions: "",
@@ -225,7 +225,7 @@ test.describe("update simple product via GraphQL API", () => {
                 {
                     label: "File",
                     type: "FILE",
-                    isRequired: true,
+                    isRequired: { withAuth: true },
                     sortOrder: 9,
                     maxCharacters: 0,
                     supportedFileExtensions: "jpg,png,pdf",
@@ -251,7 +251,7 @@ test.describe("update simple product via GraphQL API", () => {
                 id: product_id,
                 input: updateProductDetails,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Product Response:", updateResponse);
@@ -259,7 +259,7 @@ test.describe("update simple product via GraphQL API", () => {
         const filePath = path.resolve(process.cwd(), "create-product-updateResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(updateResponse, null, 2), "utf-8");
 
-        expect(updateResponse.updateProduct.success).toBe(true);
+        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

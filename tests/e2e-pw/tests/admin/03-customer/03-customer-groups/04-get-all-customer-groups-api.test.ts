@@ -21,7 +21,7 @@ test.describe("Get All customers groups via GraphQL API", () => {
         const getAllCustomerGroupsResponse = await apiClient.execute(
             getAllCustomerGroupsMutation,
             {getAllCusotmerGroupCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all customers Response:", getAllCustomerGroupsResponse);        

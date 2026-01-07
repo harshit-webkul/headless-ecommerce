@@ -24,12 +24,12 @@ test.describe("Update Role", () => {
         const response = await apiClient.execute(
             updateRoleMutation,
             { id: roleId, input: updateInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Role Response:", response);
 
-        expect(response.updateRole.success).toBe(true);
+        expect(response.updateRole.success).toBe({ withAuth: true });
         expect(response.updateRole.role.name).toEqual(updateInput.name);
     });
 });

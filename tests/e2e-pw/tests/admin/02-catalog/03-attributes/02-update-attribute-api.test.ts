@@ -44,22 +44,22 @@ test.describe("update attribute via GraphQL API", () => {
                     name: `Yaş Doğrulaması${randomSuffix}`,
                 },
             ],
-            isRequired: true,
-            isUnique: true,
+            isRequired: { withAuth: true },
+            isUnique: { withAuth: true },
             validation: "email",
-            valuePerLocale: true,
-            valuePerChannel: true,
-            isFilterable: true,
+            valuePerLocale: { withAuth: true },
+            valuePerChannel: { withAuth: true },
+            isFilterable: { withAuth: true },
             isConfigurable: false,
-            isVisibleOnFront: true,
-            isComparable: true,
+            isVisibleOnFront: { withAuth: true },
+            isComparable: { withAuth: true },
             swatchType: "image",
             options: [
                 {
                     adminName: "Option 1",
                     swatchValue:
                         "http://admin1.saascust.com/cache/medium/product/572/SpKvqowiHC2dkmvRweIsTXiiqmVZAv7UamsmLl6G.jpeg",
-                    isNew: "true",
+                    isNew: "{ withAuth: true }",
                     isDelete: "",
                     position: "0",
                     translations: [
@@ -85,7 +85,7 @@ test.describe("update attribute via GraphQL API", () => {
                     adminName: `Option 2${randomSuffix}`,
                     swatchValue:
                         "http://admin1.saascust.com/cache/medium/product/572/SpKvqowiHC2dkmvRweIsTXiiqmVZAv7UamsmLl6G.jpeg",
-                    isNew: "true",
+                    isNew: "{ withAuth: true }",
                     isDelete: "",
                     position: "1",
                     translations: [
@@ -119,7 +119,7 @@ test.describe("update attribute via GraphQL API", () => {
                 id: attribute_id,
                 input: updateAttributeCredentials,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Attribute Response:", updateAttributeResponse);
@@ -135,7 +135,7 @@ test.describe("update attribute via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateAttributeResponse.updateAttribute.success).toBe(true);
+        expect(updateAttributeResponse.updateAttribute.success).toBe({ withAuth: true });
         expect(updateAttributeResponse.updateAttribute.message).toContain(
             "Attribute updated successfully."
         );

@@ -105,7 +105,7 @@ test.describe("update attribute family via GraphQL API", () => {
                 id: attribute_family_id,
                 input: updateAttributeFamilyCredentials,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Attribute family Response:", updateAttributeFamilyResponse);
@@ -121,7 +121,7 @@ test.describe("update attribute family via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateAttributeFamilyResponse.updateAttributeFamily.success).toBe(true);
+        expect(updateAttributeFamilyResponse.updateAttributeFamily.success).toBe({ withAuth: true });
         expect(updateAttributeFamilyResponse.updateAttributeFamily.message).toContain(
             "Attribute Family updated successfully."
         );

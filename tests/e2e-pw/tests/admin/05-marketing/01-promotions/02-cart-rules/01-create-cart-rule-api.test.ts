@@ -57,7 +57,7 @@ test.describe("Create cart-rule via GraphQL API", () => {
             couponCode: `cart${randomSuffix}`,
             usesPerCoupon: 2,
             usagePerCustomer: 3,
-            conditionType: true,
+            conditionType: { withAuth: true },
             conditions: [{
                 attribute: "cart|base_sub_total",
                 operator: ">=",
@@ -79,7 +79,7 @@ test.describe("Create cart-rule via GraphQL API", () => {
             sortOrder: 1,
             channels: [1],
             customerGroups: [customer_group_id],
-            status: true,
+            status: { withAuth: true },
             startsFrom: availableFromTo.from,
             endsTill: availableFromTo.to,   
         };
@@ -89,7 +89,7 @@ test.describe("Create cart-rule via GraphQL API", () => {
          */
         const createCartRuleResponse = await apiClient.execute(createCartRuleMutation, {
                 input: createCartRuleCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('Create cart rule Response:', createCartRuleResponse);
 
@@ -97,7 +97,7 @@ test.describe("Create cart-rule via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createCartRuleResponse, null, 2), "utf-8");
 
-        expect(createCartRuleResponse.createCartRule.success).toBe(true);
+        expect(createCartRuleResponse.createCartRule.success).toBe({ withAuth: true });
         expect(createCartRuleResponse.createCartRule.message).toContain('Cart Rule created successfully.');
         expect(createCartRuleResponse.createCartRule.cartRule.name).toEqual(createCartRuleCredentials.name);
         expect(createCartRuleResponse.createCartRule.cartRule.description).toEqual(createCartRuleCredentials.description);

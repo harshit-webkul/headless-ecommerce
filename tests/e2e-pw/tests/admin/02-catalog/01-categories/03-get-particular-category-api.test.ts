@@ -32,7 +32,7 @@ test.describe("get Particular category via GraphQL API", () => {
          */
         const getParticularCategoryResponse = await apiClient.execute(getParticularCategoryMutation, {
                 id : getParticularCategoryCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular Category Response:', getParticularCategoryResponse);
         

@@ -22,7 +22,7 @@ test.describe("Create downloadable Product via GraphQL API", () => {
          */
         const createResponse = await apiClient.execute(downloadableProductMutation, {
                 input: createDownloadableProductCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('Create download Product Response:', createResponse);
 
@@ -30,7 +30,7 @@ test.describe("Create downloadable Product via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createResponse, null, 2), "utf-8");
 
-        expect(createResponse.createProduct.success).toBe(true);
+        expect(createResponse.createProduct.success).toBe({ withAuth: true });
         expect(createResponse.createProduct.message).toContain('Product created successfully.');
         expect(createResponse.createProduct.product).toHaveProperty('id');
         expect(createResponse.createProduct.product.sku).toEqual(createDownloadableProductCredentials.sku);

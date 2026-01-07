@@ -32,7 +32,7 @@ test.describe("get Particular event via GraphQL API", () => {
          */
         const getParticularEventResponse = await apiClient.execute(getParticularEventMutation, {
                 id : getParticularEventCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular event Response:', getParticularEventResponse);
         

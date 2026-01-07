@@ -15,7 +15,7 @@ test.describe("Get all currencies via GraphQL API", () => {
                 page: 1,
                 input: {},
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Currencies Response:", response);

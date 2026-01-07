@@ -18,12 +18,12 @@ test.describe("Delete User", () => {
         const response = await apiClient.execute(
             deleteUserMutation,
             { id: userId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete User Response:", response);
 
-        expect(response.deleteUser.success).toBe(true);
+        expect(response.deleteUser.success).toBe({ withAuth: true });
 
         const userInDB = await DBClient.getRow("SELECT * FROM admins WHERE id = ?", [userId]);
 

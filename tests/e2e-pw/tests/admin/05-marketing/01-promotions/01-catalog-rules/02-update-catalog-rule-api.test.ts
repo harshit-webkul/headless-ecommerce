@@ -64,7 +64,7 @@ test.describe("update customer group details via GraphQL API", () => {
 
         const updateCatalogRuleCredentials = {
             name: `update-First Catalog Rule ${randomSuffix}`,
-            status: true,
+            status: { withAuth: true },
             description: `update-First Catalog Rule 10% off${randomSuffix}`,
             channels: [1],
             customerGroups: [customer_group_id],
@@ -85,7 +85,7 @@ test.describe("update customer group details via GraphQL API", () => {
             sortOrder: 1,
             actionType: "by_percent",
             discountAmount: 10,
-            endOtherRules: true,
+            endOtherRules: { withAuth: true },
     
         };
 
@@ -95,7 +95,7 @@ test.describe("update customer group details via GraphQL API", () => {
         const updateCatalogRuleResponse = await apiClient.execute(updateCatalogRuleMutation, {
                 id : catalog_rule_id,
                 input: updateCatalogRuleCredentials,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Update catalog rule Response:', updateCatalogRuleResponse);
 
@@ -103,7 +103,7 @@ test.describe("update customer group details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCatalogRuleResponse, null, 2), "utf-8");
 
-        expect(updateCatalogRuleResponse.updateCatalogRule.success).toBe(true);
+        expect(updateCatalogRuleResponse.updateCatalogRule.success).toBe({ withAuth: true });
         expect(updateCatalogRuleResponse.updateCatalogRule.message).toContain('Catalog Rule updated successfully.');
         expect(updateCatalogRuleResponse.updateCatalogRule.catalogRule.name).not.toEqual(createCatalogrResponse.createCatalogRule.catalogRule.name);
         expect(updateCatalogRuleResponse.updateCatalogRule.catalogRule.description).not.toEqual(createCatalogrResponse.createCatalogRule.catalogRule.description);

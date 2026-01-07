@@ -30,7 +30,7 @@ test.describe("get particular attribute options via GraphQL API", () => {
             {
                 id: attribute_option_id,
             },
-            true
+            { withAuth: true }
         );
 
         const filePath = path.resolve(

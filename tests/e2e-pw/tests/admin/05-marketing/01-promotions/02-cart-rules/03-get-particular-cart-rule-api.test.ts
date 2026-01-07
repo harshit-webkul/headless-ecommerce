@@ -30,7 +30,7 @@ test.describe("get Particular cart rule via GraphQL API", () => {
          */
         const getParticularCartRuleResponse = await apiClient.execute(getParticularCartRuleMutation, {
                 id : getParticularCartRuleCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular cart-rule Response:', getParticularCartRuleResponse);
         

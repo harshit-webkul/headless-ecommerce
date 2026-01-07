@@ -18,7 +18,7 @@ test.describe("Get particular currency via GraphQL API", () => {
         const response = await apiClient.execute(
             getParticularCurrencyQuery,
             { id: currencyId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Currency Response:", response);

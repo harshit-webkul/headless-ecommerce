@@ -32,7 +32,7 @@ test.describe("Create Configurable Product via GraphQL API", () => {
          */
         const response = await apiClient.execute(ConfigurableProductMutation, {
                 input: createProductCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('Create Configurable Product Response:', response);
         console.log('Create Product Response Object:', response.createProduct?.product?.variants);
@@ -44,7 +44,7 @@ test.describe("Create Configurable Product via GraphQL API", () => {
 
         // fs.writeFileSync("create-config-product-response.json", JSON.stringify(response, null, 2), "utf-8");
         
-        expect(response.createProduct.success).toBe(true);
+        expect(response.createProduct.success).toBe({ withAuth: true });
         expect(response.createProduct.message).toContain('Product created successfully.');
         expect(response.createProduct.product).toHaveProperty('id');
         expect(response.createProduct.product.sku).toBe(createProductCredentials.sku);

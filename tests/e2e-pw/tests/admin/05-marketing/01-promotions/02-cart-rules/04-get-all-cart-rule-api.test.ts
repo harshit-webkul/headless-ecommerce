@@ -21,7 +21,7 @@ test.describe("Get All cart rule via GraphQL API", () => {
         //      couponCode: "abcde",
         //      start: "2024-03-19 12:00:00",
         //      end: "2024-03-29 12:00:00",
-        //      status: true,
+        //      status: { withAuth: true },
         //      priority: 1,
         // }
 
@@ -31,7 +31,7 @@ test.describe("Get All cart rule via GraphQL API", () => {
         const getAllCartRuleResponse = await apiClient.execute(
             getAllCartRuleMutation,
             {getAllCartRulesCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all cart rule Response:", getAllCartRuleResponse);        

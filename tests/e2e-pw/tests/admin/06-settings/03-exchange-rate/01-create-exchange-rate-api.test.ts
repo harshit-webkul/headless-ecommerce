@@ -30,7 +30,7 @@ test.describe("Create Exchange Rate", () => {
         const createCurrencyResponse = await apiClient.execute(
             createCurrencyMutation,
             { input: createCurrencyInput },
-            true
+            { withAuth: true }
         );
 
         fs.writeFileSync(
@@ -50,7 +50,7 @@ test.describe("Create Exchange Rate", () => {
         const response = await apiClient.execute(
             createExchangeRateMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Exchange Rate Response:", response);
@@ -61,7 +61,7 @@ test.describe("Create Exchange Rate", () => {
             "utf-8"
         );
 
-        expect(response.createExchangeRate.success).toBe(true);
+        expect(response.createExchangeRate.success).toBe({ withAuth: true });
         expect(response.createExchangeRate.exchangeRate.rate).toBe(createInput.rate);
         expect(response.createExchangeRate.message).toContain('Exchange rate created successfully.');
     });

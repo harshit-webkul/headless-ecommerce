@@ -24,7 +24,7 @@ test.describe("Get Particular Exchange Rate", () => {
         const response = await apiClient.execute(
             getParticularExchangeRateQuery,
             { id: exchangeRateId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Particular Exchange Rate Response:", response);

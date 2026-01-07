@@ -28,7 +28,7 @@ test.describe("Get All attributes via GraphQL API", () => {
         const getAllAttributesResponse = await apiClient.execute(
             getAllAttributesMutation,
             {},
-            true
+            { withAuth: true }
         );
 
         console.log("get all products Response:", getAllAttributesResponse);

@@ -25,7 +25,7 @@ test.describe("Get All email templates via GraphQL API", () => {
          */
         const getAllEmailTemplatesResponse = await apiClient.execute(getAllEmailTemplatesMutation, {
             getAllEmailTemplatesCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all email templates Response:", getAllEmailTemplatesResponse);        

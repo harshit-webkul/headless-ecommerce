@@ -49,12 +49,12 @@ test.describe("Update Theme", () => {
         const response = await apiClient.execute(
             updateThemeMutation,
             { id: themeId, input: updateInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Theme Response:", response);
 
-        expect(response.updateTheme.success).toBe(true);
+        expect(response.updateTheme.success).toBe({ withAuth: true });
         expect(response.updateTheme.theme.name).toEqual(updateInput.name);
         expect(response.updateTheme.theme.status).toEqual(updateInput.status);
     });

@@ -10,7 +10,7 @@ test.describe("Get All Roles", () => {
         const response = await apiClient.execute(
             getRolesQuery,
             { first: 10, page: 1, input: {} },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Roles Response:", response);

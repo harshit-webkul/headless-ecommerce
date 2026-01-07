@@ -29,10 +29,10 @@ test('delete customer address via graphQL api', async () => {
          */
         const deleteCustomerAddressResponse = await apiClient.execute(deleteCustomerAddressMutation, {
                 id: deleteCustomerAddressCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete customer address Response:', deleteCustomerAddressResponse);
 
-        expect(deleteCustomerAddressResponse.deleteCustomerAddress.success).toBe(true);        
+        expect(deleteCustomerAddressResponse.deleteCustomerAddress.success).toBe({ withAuth: true });        
     });
 });

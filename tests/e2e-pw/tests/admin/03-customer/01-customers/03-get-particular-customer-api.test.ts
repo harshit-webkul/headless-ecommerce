@@ -31,7 +31,7 @@ test.describe("get Particular customer via GraphQL API", () => {
          */
         const getParticularCustomerResponse = await apiClient.execute(getParticularCustomerMutation, {
                 id : getParticularCustomerCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular customer Response:', getParticularCustomerResponse);
         

@@ -27,7 +27,7 @@ test('Remove Particular Products via graphQL api', async () => {
          */
         const deleteResponse = await apiClient.execute(deleteParticularProductMutation, {
                 id: deleteParticularProductsCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('get all products Response:', deleteResponse);
         // console.log('get all products Response Data:', createResponse.data.products.id);
@@ -35,7 +35,7 @@ test('Remove Particular Products via graphQL api', async () => {
         // const filePath = path.resolve(process.cwd(), "delete-particular-products-Response.json");
         // fs.writeFileSync(filePath, JSON.stringify(deleteResponse, null, 2), "utf-8");
 
-        expect(deleteResponse.deleteProduct.success).toBe(true);
+        expect(deleteResponse.deleteProduct.success).toBe({ withAuth: true });
         expect(deleteResponse.deleteProduct.message).toContain('Product deleted successfully');
         
     });

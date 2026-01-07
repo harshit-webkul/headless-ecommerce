@@ -31,7 +31,7 @@ test.describe("get Particular catalog rule via GraphQL API", () => {
          */
         const getParticularCatalogRuleResponse = await apiClient.execute(getParticularCatalogRuleMutation, {
                 id : getParticularCatalogRuleCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular catalog-rule Response:', getParticularCatalogRuleResponse);
         

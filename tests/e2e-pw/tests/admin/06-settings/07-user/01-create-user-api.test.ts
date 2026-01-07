@@ -21,7 +21,7 @@ test.describe("Create User", () => {
             email: `testuser_${randomSuffix}@example.com`,
             password: "admin123",
             passwordConfirmation: "admin123",
-            status: true,
+            status: { withAuth: true },
             roleId: roleId,
             image: ""
         };
@@ -29,7 +29,7 @@ test.describe("Create User", () => {
         const response = await apiClient.execute(
             createUserMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create User Response:", response);
@@ -37,7 +37,7 @@ test.describe("Create User", () => {
         const filePath = path.resolve(process.cwd(), "create-user-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createUser.success).toBe(true);
+        expect(response.createUser.success).toBe({ withAuth: true });
         expect(response.createUser.user.email).toEqual(createInput.email);
 
         const createdUserID = Number(response.createUser.user.id);

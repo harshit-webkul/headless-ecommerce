@@ -10,7 +10,7 @@ test.describe("Get All Themes", () => {
         const response = await apiClient.execute(
             getThemesQuery,
             { first: 10, page: 1, input: {} },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Themes Response:", response);

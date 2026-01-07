@@ -30,7 +30,7 @@ test.describe("create locale via GraphQL API", () => {
             {
                 input: createLocaleCredentials,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Locale Response:", createLocaleResponse);
@@ -46,7 +46,7 @@ test.describe("create locale via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(createLocaleResponse.createLocale.success).toBe(true);
+        expect(createLocaleResponse.createLocale.success).toBe({ withAuth: true });
         expect(createLocaleResponse.createLocale.message).toContain(
             "Locale created successfully"
         );

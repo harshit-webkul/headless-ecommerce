@@ -30,11 +30,11 @@ test('Remove attribute group via graphQL api', async () => {
          */
         const deleteAttributeGroupResponse = await apiClient.execute(deleteAttributeGroupMutation, {
                 id: deleteParticularAttributeGroupCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete Response:', deleteAttributeGroupResponse);
 
-        // expect(deleteAttributeGroupResponse.deleteAttributeGroup.success).toBe(true);
+        // expect(deleteAttributeGroupResponse.deleteAttributeGroup.success).toBe({ withAuth: true });
         // expect(deleteAttributeGroupResponse.deleteAttributeGroup.message).toContain('Attribute deleted successfully');
         
     });

@@ -10,7 +10,7 @@ test.describe("Get All Tax Categories", () => {
         const response = await apiClient.execute(
             getTaxCategoriesQuery,
             { first: 10, page: 1, input: {} },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Tax Categories Response:", response);

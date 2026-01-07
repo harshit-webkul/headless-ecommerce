@@ -16,7 +16,7 @@ test.describe("Get All Inventory Sources", () => {
                 page: 1,
                 input: {}
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Inventory Sources Response:", response);

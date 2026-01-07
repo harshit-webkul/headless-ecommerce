@@ -17,7 +17,7 @@ test.describe("Get Particular Role", () => {
         const response = await apiClient.execute(
             getRoleQuery,
             { id: roleId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Role Response:", response);

@@ -32,7 +32,7 @@ test.describe("get Particular email template via GraphQL API", () => {
          */
         const getParticularEmailTemplateResponse = await apiClient.execute(getParticularEmailTemplateMutation, {
                 id : getParticularEmailTemplateCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular email-template Response:', getParticularEmailTemplateResponse);
         

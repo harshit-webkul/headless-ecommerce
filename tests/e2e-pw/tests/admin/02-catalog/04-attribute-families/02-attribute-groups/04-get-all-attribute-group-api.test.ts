@@ -22,7 +22,7 @@ test.describe("Get All attributes group via GraphQL API", () => {
         const getAllAttributeGroupResponse = await apiClient.execute(
             getAllAttributeGroupMutation,
             {getAllAttributeGroupCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all products Response:", getAllAttributeGroupResponse);

@@ -25,7 +25,7 @@ test.describe("delete customer via GraphQL API", () => {
 
         const customerStoreNotesCredentails = {
             note: `John Test${randomSuffix}`,
-            customerNotified: true,
+            customerNotified: { withAuth: true },
         }
 
         /**
@@ -37,12 +37,12 @@ test.describe("delete customer via GraphQL API", () => {
                 id: customer_id,
                 input : customerStoreNotesCredentails
             },
-            true
+            { withAuth: true }
         );
 
         console.log('create note response: ', customerNotesResponse);
 
-        expect(customerNotesResponse.storeNotes.success).toEqual(true);
+        expect(customerNotesResponse.storeNotes.success).toEqual({ withAuth: true });
         expect(customerNotesResponse.storeNotes.message).toEqual('Note created successfully');
     });
 });

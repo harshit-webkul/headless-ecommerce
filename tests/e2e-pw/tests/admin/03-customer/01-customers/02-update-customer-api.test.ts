@@ -30,7 +30,7 @@ test.describe("update customer details via GraphQL API", () => {
             dateOfBirth: "05-10-1996",
             customerGroupId: 2,
             phone: `${randomSuffix}`,
-            status: true,
+            status: { withAuth: true },
             isSuspended: false,
         };
 
@@ -40,7 +40,7 @@ test.describe("update customer details via GraphQL API", () => {
         const updateCustomerResponse = await apiClient.execute(updateCustomerMutation, {
                 id : customer_id,
                 input: updateCustomerCredentials,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Update customer Response:', updateCustomerResponse);
 
@@ -48,7 +48,7 @@ test.describe("update customer details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCustomerResponse, null, 2), "utf-8");
 
-        expect(updateCustomerResponse.updateCustomer.success).toBe(true);
+        expect(updateCustomerResponse.updateCustomer.success).toBe({ withAuth: true });
         expect(updateCustomerResponse.updateCustomer.message).toContain('Customer updated successfully.');
         expect(updateCustomerResponse.updateCustomer.customer.id).toEqual(cre.createCustomer.customer.id);
         expect(updateCustomerResponse.updateCustomer.customer.firstName).not.toEqual(cre.createCustomer.customer.firstName);

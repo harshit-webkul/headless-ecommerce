@@ -16,7 +16,7 @@ test.describe("Get All Channels", () => {
                 page: 1,
                 input: {}
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Channels Response:", response);

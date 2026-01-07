@@ -44,7 +44,7 @@ test.describe("update customer address details via GraphQL API", () => {
             state: "PA",
             phone: `${randomSuffix}`,
             email: `johndoe${randomSuffix}@example.com`,
-            defaultAddress: true,
+            defaultAddress: { withAuth: true },
         };
 
         /**
@@ -53,7 +53,7 @@ test.describe("update customer address details via GraphQL API", () => {
         const updateCustomerAddressResponse = await apiClient.execute(updateCustomerAddressMutation, {
                 id : address_id,
                 input: updateCustomerAddressCredentials,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Update customer address Response:', updateCustomerAddressResponse);
 
@@ -61,7 +61,7 @@ test.describe("update customer address details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCustomerAddressResponse, null, 2), "utf-8");
 
-        expect(updateCustomerAddressResponse.updateCustomerAddress.success).toBe(true);
+        expect(updateCustomerAddressResponse.updateCustomerAddress.success).toBe({ withAuth: true });
         expect(updateCustomerAddressResponse.updateCustomerAddress.message).toContain("Customer's address updated successfully.");
         expect(updateCustomerAddressResponse.updateCustomerAddress.address.email).not.toEqual(cre.createCustomerAddress.address.email);
       });

@@ -30,12 +30,12 @@ test.describe("Update Tax Rate", () => {
         const response = await apiClient.execute(
             updateTaxRateMutation,
             { id: rateId, input: updateInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Tax Rate Response:", response);
 
-        expect(response.updateTaxRate.success).toBe(true);
+        expect(response.updateTaxRate.success).toBe({ withAuth: true });
         expect(Number(response.updateTaxRate.taxRate.taxRate)).toEqual(updateInput.taxRate);
     });
 });

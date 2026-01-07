@@ -38,13 +38,13 @@ test.describe("Create Channel", () => {
             priority: 1,
             // latitude: "12.9716",
             // longitude: "77.5946",
-            status: true
+            status: { withAuth: true }
         };
 
         const createInventorySourceResponse = await apiClient.execute(
             createInventorySourceMutation,
             { input: createInventoryInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Inventory Source Response:", createInventorySourceResponse);
@@ -74,7 +74,7 @@ test.describe("Create Channel", () => {
             {
                 input: createLocaleCredentials,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Locale Response:", createLocaleResponse);
@@ -108,7 +108,7 @@ test.describe("Create Channel", () => {
         const response = await apiClient.execute(
             createCurrencyMutation,
             { input: createCurrencyInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Currency Response:", response);
@@ -167,13 +167,13 @@ test.describe("Create Channel", () => {
             seoKeywords: "sfsdfdsx",
             maintenanceModeText: "ertwretwrt",
             allowedIps: "",
-            isMaintenanceOn: true,
+            isMaintenanceOn: { withAuth: true },
         };
 
         const response = await apiClient.execute(
             createChannelMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Channel Response:", response);
@@ -184,7 +184,7 @@ test.describe("Create Channel", () => {
             "utf-8"
         );
 
-        expect(response.createChannel.success).toBe(true);
+        expect(response.createChannel.success).toBe({ withAuth: true });
         expect(response.createChannel.channel.code).toBe(createInput.code);
     });
 });

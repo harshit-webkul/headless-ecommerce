@@ -29,10 +29,10 @@ test.describe("update configurable product via GraphQL API", () => {
             urlKey: `virtual-demo-updated-${randomSuffix}`,
             taxCategoryId: 0,
             new: false,
-            featured: true,
-            visibleIndividually: true,
-            status: true,
-            guestCheckout: true,
+            featured: { withAuth: true },
+            visibleIndividually: { withAuth: true },
+            status: { withAuth: true },
+            guestCheckout: { withAuth: true },
             color: null,
             size: null,
             shortDescription: "Home Decor Short Description",
@@ -83,7 +83,7 @@ test.describe("update configurable product via GraphQL API", () => {
                 id: product_id,
                 input: updateVirtualProductDetails,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Product Response:", updateResponse);
@@ -99,7 +99,7 @@ test.describe("update configurable product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe(true);
+        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

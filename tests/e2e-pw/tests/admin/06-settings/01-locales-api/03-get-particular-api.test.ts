@@ -30,7 +30,7 @@ test.describe("get Particular Locale via GraphQL API", () => {
          */
         const getParticularLocaleResponse = await apiClient.execute(getParticularLocaleQuery, {
                 id : getParticularLocaleCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular locale Response:', getParticularLocaleResponse);
         

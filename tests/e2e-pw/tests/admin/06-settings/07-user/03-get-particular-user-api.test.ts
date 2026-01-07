@@ -17,7 +17,7 @@ test.describe("Get Particular User", () => {
         const response = await apiClient.execute(
             getUserQuery,
             { id: userId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get User Response:", response);

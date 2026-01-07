@@ -19,10 +19,10 @@ test.describe("Delete currency via GraphQL API", () => {
         const response = await apiClient.execute(
             deleteCurrencyMutation,
             { id: currencyId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Currency Response:", response);
-        expect(response.deleteCurrency.success).toBe(true);
+        expect(response.deleteCurrency.success).toBe({ withAuth: true });
     });
 });

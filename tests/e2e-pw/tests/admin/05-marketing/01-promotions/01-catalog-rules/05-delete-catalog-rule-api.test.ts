@@ -28,11 +28,11 @@ test('delete catalog rule via graphQL api', async () => {
          */
         const deleteCatalogRuleResponse = await apiClient.execute(deleteCatalogRuleMutation, {
                 id: deleteCatalogRuleCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete catalog rule Response:', deleteCatalogRuleResponse);
 
-        expect(deleteCatalogRuleResponse.deleteCatalogRule.success).toBe(true); 
+        expect(deleteCatalogRuleResponse.deleteCatalogRule.success).toBe({ withAuth: true }); 
         expect(deleteCatalogRuleResponse.deleteCatalogRule.message).toContain('Catalog Rule deleted successfully'); 
     });
 });

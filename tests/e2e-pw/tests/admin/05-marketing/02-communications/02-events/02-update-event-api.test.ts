@@ -44,7 +44,7 @@ test.describe("update event via GraphQL API", () => {
         const updateEventResponse = await apiClient.execute(updateEventMutation, {
             id: event_id,
             input: updateEventCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('update event Response:', updateEventResponse);
 
@@ -52,7 +52,7 @@ test.describe("update event via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateEventResponse, null, 2), "utf-8");
 
-        expect(updateEventResponse.updateEvent.success).toBe(true);
+        expect(updateEventResponse.updateEvent.success).toBe({ withAuth: true });
         expect(updateEventResponse.updateEvent.message).toContain('Event updated successfully.');
         expect(updateEventResponse.updateEvent.event.id).toEqual(cre.createEvent.event.id);
         expect(updateEventResponse.updateEvent.event.name).toEqual(updateEventCredentials.name);

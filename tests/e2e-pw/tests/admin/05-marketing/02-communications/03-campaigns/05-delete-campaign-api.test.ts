@@ -18,12 +18,12 @@ test.describe("Delete Campaign", () => {
         const response = await apiClient.execute(
             deleteCampaignMutation,
             { id },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Campaign Response:", response);
 
-        expect(response.deleteCampaign.success).toBe(true);
+        expect(response.deleteCampaign.success).toBe({ withAuth: true });
 
         const row = await DBClient.getRow(
             "SELECT * FROM marketing_campaigns WHERE id = ?",

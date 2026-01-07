@@ -22,7 +22,7 @@ test.describe("Get All attributes family via GraphQL API", () => {
         const getAllAttributeFamilyResponse = await apiClient.execute(
             getAllAttributeFamilyMutation,
             {getAllAttributeFamilyCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all Families Response:", getAllAttributeFamilyResponse);

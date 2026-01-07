@@ -25,7 +25,7 @@ test.describe("Create new attribute Group via GraphQL API", () => {
          */
         const getParticularAttributeResponse = await apiClient.execute(createAttributeGroupsMutation, {
                 input : createAttributesGroupCredentials,
-        }, true);
+        }, { withAuth: true });
 
 
         console.log('Create Attribute group Response:', getParticularAttributeResponse);
@@ -34,7 +34,7 @@ test.describe("Create new attribute Group via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(getParticularAttributeResponse, null, 2), "utf-8");
 
-        expect(getParticularAttributeResponse.createAttributeGroup.success).toBe(true);
+        expect(getParticularAttributeResponse.createAttributeGroup.success).toBe({ withAuth: true });
         expect(getParticularAttributeResponse.createAttributeGroup.message).toContain('Attribute Group created successfully.');
         expect(getParticularAttributeResponse.createAttributeGroup.attributeGroup).toHaveProperty("id");
         // expect(getParticularAttributeResponse.createAttribute.attribute.code).toEqual(createAttributesGroupCredentials.code);

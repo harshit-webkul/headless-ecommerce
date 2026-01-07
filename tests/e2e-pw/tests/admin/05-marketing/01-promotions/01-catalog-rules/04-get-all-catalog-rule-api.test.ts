@@ -21,7 +21,7 @@ test.describe("Get All catalog rule via GraphQL API", () => {
         const getAllCatalogRuleResponse = await apiClient.execute(
             getAllCatalogRulesMutation,
             {getAllCatalogRulesCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all catalog rule Response:", getAllCatalogRuleResponse);        

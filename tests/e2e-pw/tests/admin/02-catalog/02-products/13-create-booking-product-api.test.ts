@@ -26,14 +26,14 @@ for (let i = 0; i < 6; i++) {
          */
         const createBookingResponse = await apiClient.execute(createBookingProductMutation, {
                 input: createBookingProductCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('Create booking Product Response:', createBookingResponse);
         const filePath = path.resolve(process.cwd(), `create-booking-product${i}-createResponse.json`);
 
         fs.writeFileSync(filePath, JSON.stringify(createBookingResponse, null, 2), "utf-8");
 
-        expect(createBookingResponse.createProduct.success).toBe(true);
+        expect(createBookingResponse.createProduct.success).toBe({ withAuth: true });
         expect(createBookingResponse.createProduct.message).toContain('Product created successfully.');
         expect(createBookingResponse.createProduct.product).toHaveProperty('id');
         expect(createBookingResponse.createProduct.product.sku).toEqual(createBookingProductCredentials.sku);

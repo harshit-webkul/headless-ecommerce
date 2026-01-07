@@ -9,7 +9,7 @@ test.describe("Get All Campaigns", () => {
         const response = await apiClient.execute(
             getCampaignsQuery,
             { first: 10, page: 1 },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Campaigns Response:", response);

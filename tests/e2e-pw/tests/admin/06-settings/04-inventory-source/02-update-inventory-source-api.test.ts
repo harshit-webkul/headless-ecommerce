@@ -35,7 +35,7 @@ test.describe("Update Inventory Source", () => {
             priority: 1,
             // latitude: "12.9716",
             // longitude: "77.5946",
-            status: true
+            status: { withAuth: true }
         };
 
         const response = await apiClient.execute(
@@ -44,7 +44,7 @@ test.describe("Update Inventory Source", () => {
                 id: inventorySourceId,
                 input: updateInput
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Inventory Source Response:", response);
@@ -55,7 +55,7 @@ test.describe("Update Inventory Source", () => {
             "utf-8"
         );
 
-        expect(response.updateInventorySource.success).toBe(true);
+        expect(response.updateInventorySource.success).toBe({ withAuth: true });
         expect(response.updateInventorySource.inventorySource.id)
             .toBe(inventorySourceId.toString());
         expect(response.updateInventorySource.message).toContain('Inventory updated successfully.')

@@ -25,7 +25,7 @@ test.describe("get all locales via GraphQL API", () => {
                 page: 1,
                 input: {}
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Locales Response:", getAllLocalesResponse);
@@ -45,7 +45,7 @@ test.describe("get all locales via GraphQL API", () => {
         expect(getAllLocalesResponse.locales).toBeDefined();
         expect(getAllLocalesResponse.locales.paginatorInfo).toBeDefined();
         expect(getAllLocalesResponse.locales.data).toBeDefined();
-        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe(true);
+        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe({ withAuth: true });
 
         // Verify paginator info
         const paginatorInfo = getAllLocalesResponse.locales.paginatorInfo;
@@ -109,7 +109,7 @@ test.describe("get all locales via GraphQL API", () => {
                     code: locale_code
                 }
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Locales with Filter Response:", getAllLocalesResponse);
@@ -117,7 +117,7 @@ test.describe("get all locales via GraphQL API", () => {
         // Verify filtered results
         expect(getAllLocalesResponse.locales).toBeDefined();
         expect(getAllLocalesResponse.locales.data).toBeDefined();
-        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe(true);
+        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe({ withAuth: true });
         
         // Should have at least one result matching the filter
         expect(getAllLocalesResponse.locales.data.length).toBeGreaterThanOrEqual(1);
@@ -144,7 +144,7 @@ test.describe("get all locales via GraphQL API", () => {
                 page: 1,
                 input: {}
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Locales Page 1 Response:", getAllLocalesPageOneResponse);
@@ -163,7 +163,7 @@ test.describe("get all locales via GraphQL API", () => {
                     page: 2,
                     input: {}
                 },
-                true
+                { withAuth: true }
             );
 
             console.log("Get All Locales Page 2 Response:", getAllLocalesPageTwoResponse);

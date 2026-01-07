@@ -18,7 +18,7 @@ test.describe('Admin API Tests', () => {
     /**
      * Execute logout mutation
      */
-    const response = await apiClient.execute(logoutMutation, {}, true);
+    const response = await apiClient.execute(logoutMutation, {}, { withAuth: true });
 
     expect(response.userLogout.success).toBe(true);
     expect(response.userLogout.message).toContain('Success: User logout successfully.');

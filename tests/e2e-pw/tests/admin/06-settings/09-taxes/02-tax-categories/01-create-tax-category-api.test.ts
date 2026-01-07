@@ -25,7 +25,7 @@ test.describe("Create Tax Category", () => {
         const response = await apiClient.execute(
             createTaxRateMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
         console.log("Create Tax Rate Response:", response);
         const filePath = path.resolve(process.cwd(), "create-tax-rate-createResponse.json");
@@ -51,7 +51,7 @@ test.describe("Create Tax Category", () => {
         const response = await apiClient.execute(
             createTaxCategoryMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Tax Category Response:", response);
@@ -59,7 +59,7 @@ test.describe("Create Tax Category", () => {
         const filePath = path.resolve(process.cwd(), "create-tax-category-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createTaxCategory.success).toBe(true);
+        expect(response.createTaxCategory.success).toBe({ withAuth: true });
         expect(response.createTaxCategory.taxCategory.code).toEqual(createInput.code);
 
         const createdId = Number(response.createTaxCategory.taxCategory.id);

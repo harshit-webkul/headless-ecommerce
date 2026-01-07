@@ -25,7 +25,7 @@ test.describe("Get All events via GraphQL API", () => {
          */
         const getAllEventsResponse = await apiClient.execute(getAllEventsMutation, {
             getAllEventsCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all events Response:", getAllEventsResponse);        

@@ -22,14 +22,14 @@ test.describe("Create bundle Product via GraphQL API", () => {
          */
         const createResponse = await apiClient.execute(createBundleProductMutation, {
                 input: createBundleProductCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('Create bundle Product Response:', createResponse);
         const filePath = path.resolve(process.cwd(), "create-bundle-product-createResponse.json");
 
         fs.writeFileSync(filePath, JSON.stringify(createResponse, null, 2), "utf-8");
 
-        expect(createResponse.createProduct.success).toBe(true);
+        expect(createResponse.createProduct.success).toBe({ withAuth: true });
         expect(createResponse.createProduct.message).toContain('Product created successfully.');
         expect(createResponse.createProduct.product).toHaveProperty('id');
         expect(createResponse.createProduct.product.sku).toEqual(createBundleProductCredentials.sku);

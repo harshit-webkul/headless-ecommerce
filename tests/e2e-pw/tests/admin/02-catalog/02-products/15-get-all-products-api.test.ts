@@ -27,7 +27,7 @@ test.describe("Get All Products via GraphQL API", () => {
          */
         const createResponse = await apiClient.execute(getProductsMutation, {
                 input: getAllProductsCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('get all products Response:', createResponse);
         console.log('get all products Response Data:', createResponse.products.data[0]);
@@ -60,7 +60,7 @@ test.describe("Get All Products via GraphQL API", () => {
          */
         const createResponse = await apiClient.execute(getParticularProductMutation, {
                 id: getParticularProductsCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('get all products Response:', createResponse);
         // console.log('get all products Response Data:', createResponse.data.products.id);

@@ -39,7 +39,7 @@ test.describe("Update currency via GraphQL API", () => {
                 id: currencyId,
                 input: updateCurrencyInput,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Currency Response:", response);

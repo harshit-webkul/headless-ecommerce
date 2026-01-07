@@ -21,12 +21,12 @@ test.describe("Delete Exchange Rate", () => {
         const response = await apiClient.execute(
             deleteExchangeRateMutation,
             { id: exchangeRateId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Exchange Rate Response:", response);
 
-        expect(response.deleteExchangeRate.success).toBe(true);
+        expect(response.deleteExchangeRate.success).toBe({ withAuth: true });
         expect(response.deleteExchangeRate.message).toContain('Success: Exchange rate deleted successfully.');
     });
 });

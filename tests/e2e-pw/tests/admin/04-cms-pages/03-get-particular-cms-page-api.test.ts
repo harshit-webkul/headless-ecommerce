@@ -30,7 +30,7 @@ test.describe("get Particular CMS page via GraphQL API", () => {
          */
         const getParticularCMSpageResponse = await apiClient.execute(getParticularCMSpageMutation, {
                 id : getParticularCMSpageCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular cms page Response:', getParticularCMSpageResponse);
         

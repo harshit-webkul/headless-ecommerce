@@ -32,7 +32,7 @@ test.describe("customer create order via GraphQL API", () => {
             {
                 customerId: customer_id,
             },
-            true
+            { withAuth: true }
         );
 
         console.log('create note response: ', customerCreateOrderResponse);
@@ -48,7 +48,7 @@ test.describe("customer create order via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(customerCreateOrderResponse.createOrder.success).toEqual(true);
+        expect(customerCreateOrderResponse.createOrder.success).toEqual({ withAuth: true });
 
         
     });

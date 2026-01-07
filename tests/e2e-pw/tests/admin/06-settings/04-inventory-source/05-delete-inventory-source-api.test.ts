@@ -20,12 +20,12 @@ test.describe("Delete Inventory Source", () => {
         const response = await apiClient.execute(
             deleteInventorySourceMutation,
             { id: inventorySourceId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Inventory Source Response:", response);
 
-        expect(response.deleteInventorySource.success).toBe(true);
+        expect(response.deleteInventorySource.success).toBe({ withAuth: true });
 
         expect(response.deleteInventorySource.message).toContain('Inventory deleted successfully.');
     });

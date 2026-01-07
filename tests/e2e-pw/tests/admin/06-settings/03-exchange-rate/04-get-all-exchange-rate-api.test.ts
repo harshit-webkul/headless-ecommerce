@@ -16,7 +16,7 @@ test.describe("Get All Exchange Rates", () => {
                 page: 1,
                 input: {}
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Exchange Rates Response:", response);

@@ -28,11 +28,11 @@ test('delete cms page via graphQL api', async () => {
          */
         const deleteCMSpageResponse = await apiClient.execute(deleteCMSpageMutation, {
                 id: deleteCMSpageCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete cms page Response:', deleteCMSpageResponse);
 
-        expect(deleteCMSpageResponse.deleteCmsPage.success).toBe(true); 
+        expect(deleteCMSpageResponse.deleteCmsPage.success).toBe({ withAuth: true }); 
         expect(deleteCMSpageResponse.deleteCmsPage.message).toContain('CMS deleted successfully'); 
     });
 });

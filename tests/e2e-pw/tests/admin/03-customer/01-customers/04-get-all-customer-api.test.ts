@@ -22,7 +22,7 @@ test.describe("Get All customers via GraphQL API", () => {
         const getAllCustomerResponse = await apiClient.execute(
             getAllCustomerMutation,
             {getAllCusotmerCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all customers Response:", getAllCustomerResponse);        

@@ -29,11 +29,11 @@ test('delete customer group via graphQL api', async () => {
          */
         const deleteCustomerGroupResponse = await apiClient.execute(deleteCustomerGroupMutation, {
                 id: deleteCustomerGroupCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete customer group Response:', deleteCustomerGroupResponse);
 
-        expect(deleteCustomerGroupResponse.deleteCustomerGroup.success).toBe(true); 
+        expect(deleteCustomerGroupResponse.deleteCustomerGroup.success).toBe({ withAuth: true }); 
         expect(deleteCustomerGroupResponse.deleteCustomerGroup.message).toContain('Customer Group deleted successfully'); 
     });
 });

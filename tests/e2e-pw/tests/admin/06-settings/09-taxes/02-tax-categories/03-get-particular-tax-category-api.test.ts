@@ -17,7 +17,7 @@ test.describe("Get Particular Tax Category", () => {
         const response = await apiClient.execute(
             getTaxCategoryQuery,
             { id: categoryId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Tax Category Response:", response);

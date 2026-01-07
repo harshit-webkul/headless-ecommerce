@@ -17,7 +17,7 @@ test.describe("Get Particular Tax Rate", () => {
         const response = await apiClient.execute(
             getTaxRateQuery,
             { id: rateId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Tax Rate Response:", response);

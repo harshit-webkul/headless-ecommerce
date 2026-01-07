@@ -17,7 +17,7 @@ test.describe("Get Particular Campaign", () => {
         const response = await apiClient.execute(
             getCampaignQuery,
             { id },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Particular Campaign Response:", response);

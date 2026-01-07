@@ -17,7 +17,7 @@ test.describe("Get Particular Theme", () => {
         const response = await apiClient.execute(
             getThemeQuery,
             { id: themeId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Theme Response:", response);

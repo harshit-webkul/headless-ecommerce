@@ -91,7 +91,7 @@ test.describe("Create new attribute family via GraphQL API", () => {
             {
                 input: createAttributesFamilyCredentials,
             },
-            true
+            { withAuth: true }
         );
 
         console.log(
@@ -110,7 +110,7 @@ test.describe("Create new attribute family via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(createAttributeFamilyResponse.createAttributeFamily.success).toBe(true);
+        expect(createAttributeFamilyResponse.createAttributeFamily.success).toBe({ withAuth: true });
         expect(createAttributeFamilyResponse.createAttributeFamily.message).toContain('Attribute Family created successfully.');
         expect(createAttributeFamilyResponse.createAttributeFamily.attributeFamily).toHaveProperty("id");
         expect(createAttributeFamilyResponse.createAttributeFamily.attributeFamily.code).toEqual(createAttributesFamilyCredentials.code);

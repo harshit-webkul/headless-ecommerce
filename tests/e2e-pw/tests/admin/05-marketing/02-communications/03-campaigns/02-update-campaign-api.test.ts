@@ -55,12 +55,12 @@ test.describe("Update Campaign", () => {
         const response = await apiClient.execute(
             updateCampaignMutation,
             { id, input: updateInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Campaign Response:", response);
 
-        expect(response.updateCampaign.success).toBe(true);
+        expect(response.updateCampaign.success).toBe({ withAuth: true });
         expect(response.updateCampaign.campaign.name).toEqual(updateInput.name);
     });
 });

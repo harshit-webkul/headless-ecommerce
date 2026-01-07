@@ -60,10 +60,10 @@ test.describe("update booking product via GraphQL API", () => {
             name: `booking-${randomSuffix}`,
             urlKey: `booking-${randomSuffix}`,
             taxCategoryId: "",
-            new: true,
-            featured: true,
-            visibleIndividually: true,
-            status: true,
+            new: { withAuth: true },
+            featured: { withAuth: true },
+            visibleIndividually: { withAuth: true },
+            status: { withAuth: true },
             color: 3,
             size: 9,
             shortDescription:
@@ -306,7 +306,7 @@ test.describe("update booking product via GraphQL API", () => {
                 id: product_id,
                 input: updateBookingProductDetails,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Product Response:", updateResponse);
@@ -322,7 +322,7 @@ test.describe("update booking product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe(true);
+        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );
@@ -378,10 +378,10 @@ test.describe("update booking product via GraphQL API", () => {
             name: `booking-${randomSuffix}`,
             urlKey: `booking-${randomSuffix}`,
             taxCategoryId: "",
-            new: true,
-            featured: true,
-            visibleIndividually: true,
-            status: true,
+            new: { withAuth: true },
+            featured: { withAuth: true },
+            visibleIndividually: { withAuth: true },
+            status: { withAuth: true },
             color: 3,
             size: 9,
             shortDescription:
@@ -468,7 +468,7 @@ test.describe("update booking product via GraphQL API", () => {
                 id: product_id,
                 input: updateBookingProductDetails,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Product Response:", updateResponse);
@@ -484,7 +484,7 @@ test.describe("update booking product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe(true);
+        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );
@@ -540,10 +540,10 @@ test.describe("update booking product via GraphQL API", () => {
             name: `booking-${randomSuffix}`,
             urlKey: `booking-${randomSuffix}`,
             taxCategoryId: "",
-            new: true,
-            featured: true,
-            visibleIndividually: true,
-            status: true,
+            new: { withAuth: true },
+            featured: { withAuth: true },
+            visibleIndividually: { withAuth: true },
+            status: { withAuth: true },
             color: 3,
             size: 9,
             shortDescription:
@@ -671,7 +671,7 @@ test.describe("update booking product via GraphQL API", () => {
                 id: product_id,
                 input: updateBookingProductDetails,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("Update Product Response:", updateResponse);
@@ -687,7 +687,7 @@ test.describe("update booking product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe(true);
+        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

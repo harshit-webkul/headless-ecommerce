@@ -18,12 +18,12 @@ test.describe("Delete Theme", () => {
         const response = await apiClient.execute(
             deleteThemeMutation,
             { id: themeId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Theme Response:", response);
 
-        expect(response.deleteTheme.success).toBe(true);
+        expect(response.deleteTheme.success).toBe({ withAuth: true });
 
         const themeInDB = await DBClient.getRow("SELECT * FROM theme_customizations WHERE id = ?", [themeId]);
         expect(themeInDB).toBe(null);

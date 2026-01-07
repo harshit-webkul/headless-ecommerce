@@ -32,7 +32,7 @@ test.describe("get Particular attribute via GraphQL API", () => {
          */
         const getParticularAttibuteResponse = await apiClient.execute(getParticularAttributeMutation, {
                 id : getParticularAttributeCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular attribute Response:', getParticularAttibuteResponse);
         

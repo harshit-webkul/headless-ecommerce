@@ -10,7 +10,7 @@ test.describe("Get All Users", () => {
         const response = await apiClient.execute(
             getUsersQuery,
             { first: 10, page: 1, input: {} },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Users Response:", response);

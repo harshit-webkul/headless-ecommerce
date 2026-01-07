@@ -28,11 +28,11 @@ test('delete email template via graphQL api', async () => {
          */
         const deleteEmailTemplateResponse = await apiClient.execute(deleteEmailTemplateMutation, {
                 id: deleteEmailTemplateCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete email template Response:', deleteEmailTemplateResponse);
 
-        expect(deleteEmailTemplateResponse.deleteEmailTemplate.success).toBe(true); 
+        expect(deleteEmailTemplateResponse.deleteEmailTemplate.success).toBe({ withAuth: true }); 
         expect(deleteEmailTemplateResponse.deleteEmailTemplate.message).toContain('Email Template deleted successfully'); 
     });
 });

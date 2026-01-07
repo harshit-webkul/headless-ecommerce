@@ -22,7 +22,7 @@ test.describe("Get customer All addresses via GraphQL API", () => {
         const getCustomerAllAddressesResponse = await apiClient.execute(
             getAllAddessesMutation,
             {getAllAddressesCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("customer all addresses Response:", getCustomerAllAddressesResponse);        

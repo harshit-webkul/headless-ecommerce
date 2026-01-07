@@ -18,12 +18,12 @@ test.describe("Delete Tax Category", () => {
         const response = await apiClient.execute(
             deleteTaxCategoryMutation,
             { id: categoryId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Tax Category Response:", response);
 
-        expect(response.deleteTaxCategory.success).toBe(true);
+        expect(response.deleteTaxCategory.success).toBe({ withAuth: true });
 
         const categoryInDB = await DBClient.getRow("SELECT * FROM tax_categories WHERE id = ?", [categoryId]);
         expect(categoryInDB).toBe(null);

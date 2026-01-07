@@ -31,7 +31,7 @@ test.describe("get Particular customer group via GraphQL API", () => {
          */
         const getParticularCustomerGroupResponse = await apiClient.execute(getParticularcustomerGroupMutation, {
                 id : getParticularCustomerGroupCredentials.id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Get Particular customer group Response:', getParticularCustomerGroupResponse);
         

@@ -27,11 +27,11 @@ test('Remove Particular attribute via graphQL api', async () => {
          */
         const deleteAttributeResponse = await apiClient.execute(deleteParticularAttributeMutation, {
                 id: deleteParticularAttributeCredentials.id
-        }, true);
+        }, { withAuth: true });
 
         console.log('delete Response:', deleteAttributeResponse);
 
-        expect(deleteAttributeResponse.deleteAttribute.success).toBe(true);
+        expect(deleteAttributeResponse.deleteAttribute.success).toBe({ withAuth: true });
         expect(deleteAttributeResponse.deleteAttribute.message).toContain('Attribute deleted successfully');
         
     });

@@ -21,7 +21,7 @@ test.describe("Create Role", () => {
         const response = await apiClient.execute(
             createRoleMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Role Response:", response);
@@ -29,7 +29,7 @@ test.describe("Create Role", () => {
         const filePath = path.resolve(process.cwd(), "create-role-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createRole.success).toBe(true);
+        expect(response.createRole.success).toBe({ withAuth: true });
         expect(response.createRole.role.name).toEqual(createInput.name);
 
         const createdRoleID = Number(response.createRole.role.id);

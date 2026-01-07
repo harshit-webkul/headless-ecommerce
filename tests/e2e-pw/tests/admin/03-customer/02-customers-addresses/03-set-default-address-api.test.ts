@@ -38,7 +38,7 @@ test.describe("set customer default address details via GraphQL API", () => {
         const setCustomerDefaultAddressResponse = await apiClient.execute(setDefaultAddressMutation, {
                 id : address_id,
                 customerId : customer_id,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Update customer address Response:', setCustomerDefaultAddressResponse);
 
@@ -46,7 +46,7 @@ test.describe("set customer default address details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(setCustomerDefaultAddressResponse, null, 2), "utf-8");
 
-        // expect(setCustomerDefaultAddressResponse.updateCustomerAddress.success).toBe(true);
+        // expect(setCustomerDefaultAddressResponse.updateCustomerAddress.success).toBe({ withAuth: true });
         // expect(setCustomerDefaultAddressResponse.updateCustomerAddress.message).toContain("Customer's address updated successfully.");
         // expect(setCustomerDefaultAddressResponse.updateCustomerAddress.address.email).not.toEqual(cre.createCustomerAddress.address.email);
       });

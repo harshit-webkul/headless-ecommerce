@@ -18,12 +18,12 @@ test.describe("Delete Role", () => {
         const response = await apiClient.execute(
             deleteRoleMutation,
             { id: roleId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Role Response:", response);
 
-        expect(response.deleteRole.success).toBe(true);
+        expect(response.deleteRole.success).toBe({ withAuth: true });
 
         const roleInDB = await DBClient.getRow("SELECT * FROM roles WHERE id = ?", [roleId]);
         expect(roleInDB).toBe(null);

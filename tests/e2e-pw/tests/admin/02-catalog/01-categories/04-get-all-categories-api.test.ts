@@ -28,7 +28,7 @@ test.describe("Get All catogories via GraphQL API", () => {
             {
                 slug: getAllcategoriesCredentials.slug,
             },
-            true
+            { withAuth: true }
         );
 
         console.log("get all products Response:", getAllCategoriesResponse);

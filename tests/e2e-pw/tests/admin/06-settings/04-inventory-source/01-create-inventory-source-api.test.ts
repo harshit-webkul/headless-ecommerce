@@ -27,13 +27,13 @@ test.describe("Create Inventory Source", () => {
             priority: 1,
             // latitude: "12.9716",
             // longitude: "77.5946",
-            status: true
+            status: { withAuth: true }
         };
 
         const response = await apiClient.execute(
             createInventorySourceMutation,
             { input: createInput },
-            true
+            { withAuth: true }
         );
 
         console.log("Create Inventory Source Response:", response);
@@ -44,7 +44,7 @@ test.describe("Create Inventory Source", () => {
             "utf-8"
         );
 
-        expect(response.createInventorySource.success).toBe(true);
+        expect(response.createInventorySource.success).toBe({ withAuth: true });
         expect(response.createInventorySource.inventorySource.code)
             .toBe(createInput.code);
 

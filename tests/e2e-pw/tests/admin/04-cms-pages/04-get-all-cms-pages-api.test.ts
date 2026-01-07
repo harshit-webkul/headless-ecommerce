@@ -21,7 +21,7 @@ test.describe("Get All cms pages via GraphQL API", () => {
         const getAllCMSpagesResponse = await apiClient.execute(
             getAllCMSpagesMutation,
             {getAllCMSpagesCredentials},
-            true
+            { withAuth: true }
         );
 
         console.log("get all customers Response:", getAllCMSpagesResponse);        

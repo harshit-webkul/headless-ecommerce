@@ -10,7 +10,7 @@ test.describe("Get All Tax Rates", () => {
         const response = await apiClient.execute(
             getTaxRatesQuery,
             { first: 10, page: 1, input: {} },
-            true
+            { withAuth: true }
         );
 
         console.log("Get All Tax Rates Response:", response);

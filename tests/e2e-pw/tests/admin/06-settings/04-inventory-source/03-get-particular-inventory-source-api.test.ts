@@ -20,7 +20,7 @@ test.describe("Get Particular Inventory Source", () => {
         const response = await apiClient.execute(
             getInventorySourceQuery,
             { id: inventorySourceId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Inventory Source Response:", response);

@@ -27,7 +27,7 @@ test.describe("update category via GraphQL API", () => {
             locale: "all",
             slug: `update-${randomSuffix}`,
             description: `update-${randomSuffix}`,
-            status: true,
+            status: { withAuth: true },
             position: 3,
             displayMode: "products_and_description",
             parentId: 1,
@@ -49,7 +49,7 @@ test.describe("update category via GraphQL API", () => {
         const updateCategoryResponse = await apiClient.execute(updateCategoryMutation, {
                 id : category_id,
                 input: updateCategoryCredentials,
-        }, true);
+        }, { withAuth: true });
 
         console.log('Update Category Response:', updateCategoryResponse);
 
@@ -57,7 +57,7 @@ test.describe("update category via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCategoryResponse, null, 2), "utf-8");
 
-        expect(updateCategoryResponse.updateCategory.success).toBe(true);
+        expect(updateCategoryResponse.updateCategory.success).toBe({ withAuth: true });
         expect(updateCategoryResponse.updateCategory.message).toContain('Category updated successfully.');
         expect(updateCategoryResponse.updateCategory.category).toHaveProperty('id');
         expect(updateCategoryResponse.updateCategory.category.name).not.toEqual(cre.name);

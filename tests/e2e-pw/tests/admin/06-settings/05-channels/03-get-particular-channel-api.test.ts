@@ -18,7 +18,7 @@ test.describe("Get Particular Channel", () => {
         const response = await apiClient.execute(
             getChannelQuery,
             { id: channelId },
-            true
+            { withAuth: true }
         );
 
         console.log("Get Particular Channel Response:", response);

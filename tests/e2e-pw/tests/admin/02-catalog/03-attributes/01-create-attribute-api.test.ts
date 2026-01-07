@@ -35,14 +35,14 @@ test.describe("Create attributes via GraphQL API", () => {
                     name: `Yaş Doğrulaması-${randomSuffix}`,
                 },
             ],
-            isRequired: true,
+            isRequired: { withAuth: true },
             isUnique: false,
             validation: "",
-            valuePerLocale: true,
-            valuePerChannel: true,
-            isConfigurable: true,
-            isVisibleOnFront: true,
-            isComparable: true,
+            valuePerLocale: { withAuth: true },
+            valuePerChannel: { withAuth: true },
+            isConfigurable: { withAuth: true },
+            isVisibleOnFront: { withAuth: true },
+            isComparable: { withAuth: true },
         };
 
         /**
@@ -50,7 +50,7 @@ test.describe("Create attributes via GraphQL API", () => {
          */
         const getParticularAttributeResponse = await apiClient.execute(createAttributeMutation, {
                 input : createAttributeCredentials,
-        }, true);
+        }, { withAuth: true });
 
 
         console.log('Create Attribute Response:', getParticularAttributeResponse);
@@ -59,7 +59,7 @@ test.describe("Create attributes via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(getParticularAttributeResponse, null, 2), "utf-8");
 
-        expect(getParticularAttributeResponse.createAttribute.success).toBe(true);
+        expect(getParticularAttributeResponse.createAttribute.success).toBe({ withAuth: true });
         expect(getParticularAttributeResponse.createAttribute.message).toContain('Attribute created successfully.');
         expect(getParticularAttributeResponse.createAttribute.attribute).toHaveProperty("id");
         expect(getParticularAttributeResponse.createAttribute.attribute.code).toEqual(createAttributeCredentials.code);

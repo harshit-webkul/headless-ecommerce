@@ -52,7 +52,7 @@ test.describe("Create catalog-rule via GraphQL API", () => {
 
         const createCatalogRuleCredentials = {
             name: `First Catalog Rule ${randomSuffix}`,
-            status: true,
+            status: { withAuth: true },
             description: `First Catalog Rule 10% off${randomSuffix}`,
             channels: [1],
             customerGroups: [customer_group_id],
@@ -73,7 +73,7 @@ test.describe("Create catalog-rule via GraphQL API", () => {
             sortOrder: 1,
             actionType: "by_percent",
             discountAmount: 10,
-            endOtherRules: true,
+            endOtherRules: { withAuth: true },
     
         };
 
@@ -82,7 +82,7 @@ test.describe("Create catalog-rule via GraphQL API", () => {
          */
         const createCatalogRuleResponse = await apiClient.execute(createCatalogRuleMutation, {
                 input: createCatalogRuleCredentials
-        }, true);
+        }, { withAuth: true });
 
         console.log('Create catalog rule Response:', createCatalogRuleResponse);
 
@@ -90,7 +90,7 @@ test.describe("Create catalog-rule via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createCatalogRuleResponse, null, 2), "utf-8");
 
-        expect(createCatalogRuleResponse.createCatalogRule.success).toBe(true);
+        expect(createCatalogRuleResponse.createCatalogRule.success).toBe({ withAuth: true });
         expect(createCatalogRuleResponse.createCatalogRule.message).toContain('Catalog Rule created successfully.');
         expect(createCatalogRuleResponse.createCatalogRule.catalogRule).toHaveProperty('id');
         expect(createCatalogRuleResponse.createCatalogRule.catalogRule.status).toEqual(createCatalogRuleCredentials.status);

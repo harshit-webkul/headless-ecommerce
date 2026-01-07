@@ -17,7 +17,7 @@ test.describe("Get All attributes options via GraphQL API", () => {
         const getAllAttributeOptionsResponse = await apiClient.execute(
             getAllAttributeOptionsMutation,
             {},
-            true
+            { withAuth: true }
         );
 
         const filePath = path.resolve(

@@ -18,10 +18,10 @@ test.describe("Delete Channel", () => {
         const response = await apiClient.execute(
             deleteChannelMutation,
             { id: channelId },
-            true
+            { withAuth: true }
         );
 
         console.log("Delete Channel Response:", response);
-        expect(response.deleteChannel.success).toBe(true);
+        expect(response.deleteChannel.success).toBe({ withAuth: true });
     });
 });
