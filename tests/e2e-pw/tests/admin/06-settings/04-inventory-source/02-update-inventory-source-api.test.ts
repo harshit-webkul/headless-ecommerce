@@ -55,7 +55,7 @@ test.describe("Update Inventory Source", () => {
             "utf-8"
         );
 
-        expect(response.updateInventorySource.success).toBe({ withAuth: true });
+        expect(response.updateInventorySource.success).toBe(true);
         expect(response.updateInventorySource.inventorySource.id)
             .toBe(inventorySourceId.toString());
         expect(response.updateInventorySource.message).toContain('Inventory updated successfully.')

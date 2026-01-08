@@ -90,7 +90,7 @@ test.describe("Create catalog-rule via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createCatalogRuleResponse, null, 2), "utf-8");
 
-        expect(createCatalogRuleResponse.createCatalogRule.success).toBe({ withAuth: true });
+        expect(createCatalogRuleResponse.createCatalogRule.success).toBe(true);
         expect(createCatalogRuleResponse.createCatalogRule.message).toContain('Catalog Rule created successfully.');
         expect(createCatalogRuleResponse.createCatalogRule.catalogRule).toHaveProperty('id');
         expect(createCatalogRuleResponse.createCatalogRule.catalogRule.status).toEqual(createCatalogRuleCredentials.status);

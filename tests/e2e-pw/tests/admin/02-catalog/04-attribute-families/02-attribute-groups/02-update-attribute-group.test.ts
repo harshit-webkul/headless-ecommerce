@@ -59,7 +59,7 @@ test.describe("update attribute group via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateAttributeGroupResponse.updateAttributeGroup.success).toBe({ withAuth: true });
+        expect(updateAttributeGroupResponse.updateAttributeGroup.success).toBe(true);
         expect(updateAttributeGroupResponse.updateAttributeGroup.message).toContain(
             "Attribute Group updated successfully."
         );

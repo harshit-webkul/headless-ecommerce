@@ -11,10 +11,10 @@ test.describe("get Particular category via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createCategoryResponse = fs.readFileSync(
-            "create-category-createResponse.json",
-            "utf-8"
-        );
-
+        "create-category-createResponse.json",
+        "utf-8"
+    );
+    
     const cre = JSON.parse(createCategoryResponse)
     console.log("Create Category Response Data:", cre);
     const category_id = Number(cre.createCategory.category.id);

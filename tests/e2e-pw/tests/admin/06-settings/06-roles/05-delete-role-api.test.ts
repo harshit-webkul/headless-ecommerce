@@ -23,7 +23,7 @@ test.describe("Delete Role", () => {
 
         console.log("Delete Role Response:", response);
 
-        expect(response.deleteRole.success).toBe({ withAuth: true });
+        expect(response.deleteRole.success).toBe(true);
 
         const roleInDB = await DBClient.getRow("SELECT * FROM roles WHERE id = ?", [roleId]);
         expect(roleInDB).toBe(null);

@@ -23,7 +23,7 @@ test.describe("Delete Theme", () => {
 
         console.log("Delete Theme Response:", response);
 
-        expect(response.deleteTheme.success).toBe({ withAuth: true });
+        expect(response.deleteTheme.success).toBe(true);
 
         const themeInDB = await DBClient.getRow("SELECT * FROM theme_customizations WHERE id = ?", [themeId]);
         expect(themeInDB).toBe(null);

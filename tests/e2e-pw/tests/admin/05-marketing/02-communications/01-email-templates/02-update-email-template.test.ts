@@ -42,7 +42,7 @@ test.describe("Create email template group via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateEmailTemplateResponse, null, 2), "utf-8");
 
-        expect(updateEmailTemplateResponse.updateEmailTemplate.success).toBe({ withAuth: true });
+        expect(updateEmailTemplateResponse.updateEmailTemplate.success).toBe(true);
         expect(updateEmailTemplateResponse.updateEmailTemplate.message).toContain('Email Template updated successfully.');
         expect(updateEmailTemplateResponse.updateEmailTemplate.emailTemplate.id).toEqual(cre.createEmailTemplate.emailTemplate.id);
         

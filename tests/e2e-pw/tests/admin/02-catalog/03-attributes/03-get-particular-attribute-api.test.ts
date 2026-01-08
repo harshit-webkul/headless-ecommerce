@@ -8,39 +8,52 @@ import { getParticularAttributeMutation } from "../../../../mutations/attributes
 test.describe("get Particular attribute via GraphQL API", () => {
     let apiClient: GraphQLClient;
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
+    test("get Particular Attribute via graphQL api", async () => {
+        const createAttributeResponse = fs.readFileSync(
+            "create-attribute-createResponse.json",
+            "utf-8"
+        );
 
-    const createAttributeResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-attribute-createResponse.json",
-        "utf-8"
-    );
+        const cre = JSON.parse(createAttributeResponse);
+        console.log("Create Attribute Response Data:", cre);
+        const attribute_id = Number(cre.createAttribute.attribute.id);
+        console.log("Attribute ID to update:", attribute_id);
 
-    const cre = JSON.parse(createAttributeResponse);
-    console.log("Create Attribute Response Data:", cre);
-    const attribute_id = Number(cre.createAttribute.attribute.id);
-    console.log("Attribute ID to update:", attribute_id);
-
-
-    test('get Particular Attribute via graphQL api', async () => {
         const randomSuffix = Date.now();
 
         const getParticularAttributeCredentials = {
-            id : attribute_id
+            id: attribute_id,
         };
 
         /**
          * Execute get particular category mutation
          */
-        const getParticularAttibuteResponse = await apiClient.execute(getParticularAttributeMutation, {
-                id : getParticularAttributeCredentials.id,
-        }, { withAuth: true });
+        const getParticularAttibuteResponse = await apiClient.execute(
+            getParticularAttributeMutation,
+            {
+                id: getParticularAttributeCredentials.id,
+            },
+            { withAuth: true }
+        );
 
-        console.log('Get Particular attribute Response:', getParticularAttibuteResponse);
-        
-        const filePath = path.resolve(process.cwd(), "get-particular-attribute-updateResponse.json");
+        console.log(
+            "Get Particular attribute Response:",
+            getParticularAttibuteResponse
+        );
 
-        fs.writeFileSync(filePath, JSON.stringify(getParticularAttibuteResponse, null, 2), "utf-8");
+        const filePath = path.resolve(
+            process.cwd(),
+            "get-particular-attribute-updateResponse.json"
+        );
 
-        expect(getParticularAttibuteResponse.attribute.id).toEqual(cre.createAttribute.attribute.id);
-        
-      });
+        fs.writeFileSync(
+            filePath,
+            JSON.stringify(getParticularAttibuteResponse, null, 2),
+            "utf-8"
+        );
+
+        expect(getParticularAttibuteResponse.attribute.id).toEqual(
+            cre.createAttribute.attribute.id
+        );
+    });
 });

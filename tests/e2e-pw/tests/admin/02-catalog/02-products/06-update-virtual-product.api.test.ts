@@ -10,7 +10,7 @@ test.describe("update configurable product via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createVirtualProductResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-virtual-product-createResponse.json",
+        "create-virtual-product-createResponse.json",
         "utf-8"
     );
     console.log("Create Product Response from file:", createVirtualProductResponse);
@@ -29,10 +29,10 @@ test.describe("update configurable product via GraphQL API", () => {
             urlKey: `virtual-demo-updated-${randomSuffix}`,
             taxCategoryId: 0,
             new: false,
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
-            guestCheckout: { withAuth: true },
+            featured: true,
+            visibleIndividually: true,
+            status: true,
+            guestCheckout: true,
             color: null,
             size: null,
             shortDescription: "Home Decor Short Description",
@@ -99,7 +99,7 @@ test.describe("update configurable product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe( true );
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

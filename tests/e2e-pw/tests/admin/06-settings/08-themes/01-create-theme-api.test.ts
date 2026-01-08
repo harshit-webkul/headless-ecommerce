@@ -35,7 +35,7 @@ test.describe("Create Theme", () => {
         const filePath = path.resolve(process.cwd(), "create-theme-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createTheme.success).toBe({ withAuth: true });
+        expect(response.createTheme.success).toBe(true);
         expect(response.createTheme.theme.themeCode).toEqual(createInput.themeCode);
 
         const createdThemeID = Number(response.createTheme.theme.id);

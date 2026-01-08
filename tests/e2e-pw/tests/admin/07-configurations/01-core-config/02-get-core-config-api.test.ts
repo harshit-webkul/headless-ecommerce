@@ -3,11 +3,6 @@ import { GraphQLClient } from "../../../../utils/adminApiClient";
 import { getCoreConfigQuery as GET_CORE_CONFIG } from "../../../../mutations/core-configuration/core-config-mutation";
 
 test.describe("Core Config - Get API", () => {
-    test.beforeAll(async () => {
-        const apiClient = new GraphQLClient();
-        await apiClient.adminLogin("admin@example.com", "admin123", true);
-    });
-
     test("retrieves a core config by code", async () => {
         const client = new GraphQLClient();
         const appSecretKey = process.env.APP_SECRET_KEY?.replace(/^base64:/, "") ?? "";

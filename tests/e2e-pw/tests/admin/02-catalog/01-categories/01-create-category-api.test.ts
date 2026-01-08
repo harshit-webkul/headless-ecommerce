@@ -16,7 +16,7 @@ test.describe("Create category via GraphQL API", () => {
             locale: "all",
             slug: `test-${randomSuffix}`,
             description: `test-${randomSuffix}`,
-            status: { withAuth: true },
+            status: true,
             position: 3,
             displayMode: "products_and_description",
             parentId: 1,
@@ -41,11 +41,22 @@ test.describe("Create category via GraphQL API", () => {
 
         console.log('Create Category Response:', createResponse);
 
-        const filePath = path.resolve(process.cwd(), "create-category-createResponse.json");
+        // const filePath = path.resolve(process.cwd(), "create-category-createResponse.json");
 
-        fs.writeFileSync(filePath, JSON.stringify(createResponse, null, 2), "utf-8");
+        // fs.writeFileSync(filePath, JSON.stringify(createResponse, null, 2), "utf-8");
 
-        expect(createResponse.createCategory.success).toBe({ withAuth: true });
+         const filePath = path.resolve(
+            process.cwd(),
+            "create-category-createResponse.json"
+        );
+
+        fs.writeFileSync(
+            filePath,
+            JSON.stringify(createResponse, null, 2),
+            "utf-8"
+        );
+
+        expect(createResponse.createCategory.success).toBe(true);
         expect(createResponse.createCategory.message).toContain('Category created successfully.');
         expect(createResponse.createCategory.category).toHaveProperty('id');
         expect(createResponse.createCategory.category.name).toEqual(createCategoryCredentials.name);

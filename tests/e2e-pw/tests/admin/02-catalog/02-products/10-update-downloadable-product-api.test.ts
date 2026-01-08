@@ -10,7 +10,7 @@ test.describe("update configurable product via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createDownloadableProductResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-downloadable-product-createResponse.json",
+        "create-downloadable-product-createResponse.json",
         "utf-8"
     );
 
@@ -38,11 +38,11 @@ test.describe("update configurable product via GraphQL API", () => {
             name: `e-book-${randomSuffix}`,
             urlKey: `e-book-${randomSuffix}`,
             taxCategoryId: 1,
-            new: { withAuth: true },
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
-            guestCheckout: { withAuth: true },
+            new: true,
+            featured: true,
+            visibleIndividually: true,
+            status: true,
+            guestCheckout: true,
             color: 3,
             size: 9,
             shortDescription: "<p>Home Decor Short Description</p>",
@@ -168,7 +168,7 @@ test.describe("update configurable product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe(true);
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

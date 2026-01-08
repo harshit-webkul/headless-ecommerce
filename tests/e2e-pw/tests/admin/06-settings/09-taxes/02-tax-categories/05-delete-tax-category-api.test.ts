@@ -23,7 +23,7 @@ test.describe("Delete Tax Category", () => {
 
         console.log("Delete Tax Category Response:", response);
 
-        expect(response.deleteTaxCategory.success).toBe({ withAuth: true });
+        expect(response.deleteTaxCategory.success).toBe(true);
 
         const categoryInDB = await DBClient.getRow("SELECT * FROM tax_categories WHERE id = ?", [categoryId]);
         expect(categoryInDB).toBe(null);

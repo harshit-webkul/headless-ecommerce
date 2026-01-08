@@ -35,7 +35,7 @@ test.describe("Create Customer via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createCustomerResponse, null, 2), "utf-8");
 
-        expect(createCustomerResponse.createCustomer.success).toBe({ withAuth: true });
+        expect(createCustomerResponse.createCustomer.success).toBe(true);
         expect(createCustomerResponse.createCustomer.message).toContain('Customer created successfully.');
         
         const createdCustomerId = createCustomerResponse.createCustomer.customer.id;

@@ -42,7 +42,7 @@ test.describe("update locales details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateLocaleResponse, null, 2), "utf-8");
 
-        expect(updateLocaleResponse.updateLocale.success).toBe({ withAuth: true });
+        expect(updateLocaleResponse.updateLocale.success).toBe(true);
         expect(updateLocaleResponse.updateLocale.message).toContain('Locale updated successfully.');
         expect(updateLocaleResponse.updateLocale.locale.id).toEqual(cre.createLocale.locale.id);
         

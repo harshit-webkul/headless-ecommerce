@@ -35,7 +35,7 @@ test.describe("Update Tax Rate", () => {
 
         console.log("Update Tax Rate Response:", response);
 
-        expect(response.updateTaxRate.success).toBe({ withAuth: true });
+        expect(response.updateTaxRate.success).toBe(true);
         expect(Number(response.updateTaxRate.taxRate.taxRate)).toEqual(updateInput.taxRate);
     });
 });

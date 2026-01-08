@@ -10,7 +10,7 @@ test.describe("get particular attribute options via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const getAllAttributeOptionResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/get-all-attribute-options-createResponse.json",
+        "get-all-attribute-options-createResponse.json",
         "utf-8"
     );
 

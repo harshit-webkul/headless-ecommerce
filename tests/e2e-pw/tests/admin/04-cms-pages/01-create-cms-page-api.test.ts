@@ -34,7 +34,7 @@ test.describe("Create cms page via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createCMSpageResponse, null, 2), "utf-8");
 
-        expect(createCMSpageResponse.createCmsPage.success).toBe({ withAuth: true });
+        expect(createCMSpageResponse.createCmsPage.success).toBe(true);
         expect(createCMSpageResponse.createCmsPage.message).toContain('CMS created successfully.');
         
         const create_cms_page_ID = Number(createCMSpageResponse.createCmsPage.page.id);

@@ -9,17 +9,17 @@ test.describe("get Particular catalog rule via GraphQL API", () => {
     let apiClient: GraphQLClient;
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
-    const createCatalogRuleResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-catalog-rule-createResponse.json",
-        "utf-8"
-    );
-   
-    const cre = JSON.parse(createCatalogRuleResponse)
-    console.log("Create catalog rule Response Data:", cre);
-    const catalog_rule_id = Number(cre.createCatalogRule.catalogRule.id);
-    console.log("catalog rule ID to update:", catalog_rule_id);
-
     test('get Particular catalog rule via graphQL api', async () => {
+        
+        const createCatalogRuleResponse = fs.readFileSync(
+            "create-catalog-rule-createResponse.json",
+            "utf-8"
+        );
+    
+        const cre = JSON.parse(createCatalogRuleResponse)
+        console.log("Create catalog rule Response Data:", cre);
+        const catalog_rule_id = Number(cre.createCatalogRule.catalogRule.id);
+        console.log("catalog rule ID to update:", catalog_rule_id);
         const randomSuffix = Date.now();
 
         const getParticularCatalogRuleCredentials = {

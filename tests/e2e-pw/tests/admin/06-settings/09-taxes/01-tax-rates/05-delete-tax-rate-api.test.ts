@@ -23,7 +23,7 @@ test.describe("Delete Tax Rate", () => {
 
         console.log("Delete Tax Rate Response:", response);
 
-        expect(response.deleteTaxRate.success).toBe({ withAuth: true });
+        expect(response.deleteTaxRate.success).toBe(true);
 
         const rateInDB = await DBClient.getRow("SELECT * FROM tax_rates WHERE id = ?", [rateId]);
         expect(rateInDB).toBe(null);

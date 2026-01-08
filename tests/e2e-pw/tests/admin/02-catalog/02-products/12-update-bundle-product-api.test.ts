@@ -10,12 +10,12 @@ test.describe("update bundle product via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createBundleProductResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-bundle-product-createResponse.json",
+        "create-bundle-product-createResponse.json",
         "utf-8"
     );
 
     const createSimpleProductResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-product-createResponse.json",
+        "create-product-createResponse.json",
         "utf-8"
     );
 
@@ -45,11 +45,11 @@ test.describe("update bundle product via GraphQL API", () => {
             urlKey: `bundle-demo1${randomSuffix}`,
             productNumber: `${randomSuffix}`,
             taxCategoryId: 1,
-            new: { withAuth: true },
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
-            guestCheckout: { withAuth: true },
+            new:true,
+            featured:true,
+            visibleIndividually:true,
+            status:true,
+            guestCheckout:true,
             color: 3,
             size: 9,
             shortDescription: "<p>bundle-demo1 Short Description</p>",
@@ -68,7 +68,7 @@ test.describe("update bundle product via GraphQL API", () => {
                         },
                     ],
                     type: "radio",
-                    isRequired: { withAuth: true },
+                    isRequired: true,
                     sortOrder: 1,
                     products: [
                         {
@@ -118,7 +118,7 @@ test.describe("update bundle product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe( true );
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

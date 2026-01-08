@@ -41,7 +41,7 @@ test.describe("Create currency via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createCurrency.success).toBe({ withAuth: true });
+        expect(response.createCurrency.success).toBe(true);
         expect(response.createCurrency.currency.code).toBe(createCurrencyInput.code);
         expect(response.createCurrency.message).toContain('Currency created successfully.');
 

@@ -23,7 +23,7 @@ test.describe("Delete Campaign", () => {
 
         console.log("Delete Campaign Response:", response);
 
-        expect(response.deleteCampaign.success).toBe({ withAuth: true });
+        expect(response.deleteCampaign.success).toBe(true);
 
         const row = await DBClient.getRow(
             "SELECT * FROM marketing_campaigns WHERE id = ?",

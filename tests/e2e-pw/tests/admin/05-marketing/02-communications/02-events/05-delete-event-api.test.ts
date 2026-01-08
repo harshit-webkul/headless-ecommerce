@@ -33,7 +33,7 @@ test('delete event via graphQL api', async () => {
 
         console.log('delete email template Response:', deleteEventResponse);
 
-        expect(deleteEventResponse.deleteEvent.success).toBe({ withAuth: true }); 
+        expect(deleteEventResponse.deleteEvent.success).toBe(true); 
         expect(deleteEventResponse.deleteEvent.message).toContain('Event deleted successfully'); 
     });
 });

@@ -43,7 +43,7 @@ test.describe("update cms page details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCMSpageResponse, null, 2), "utf-8");
 
-        expect(updateCMSpageResponse.updateCmsPage.success).toBe({ withAuth: true });
+        expect(updateCMSpageResponse.updateCmsPage.success).toBe(true);
         expect(updateCMSpageResponse.updateCmsPage.message).toContain('CMS updated successfully.');
         expect(updateCMSpageResponse.updateCmsPage.page.id).toEqual(cre.createCmsPage.page.id);
         

@@ -3,7 +3,6 @@ import { GraphQLClient } from "../../../../../utils/adminApiClient";
 import {
     createUrlRewriteMutation as CREATE_URL_REWRITE,
     getUrlRewritesQuery as GET_URL_REWRITES,
-    deleteUrlRewriteMutation as DELETE_URL_REWRITE,
 } from "../../../../../mutations/marketings/search-seo/url-rewrite-mutation";
 
 test.describe("URL Rewrite - List API", () => {
@@ -28,10 +27,5 @@ test.describe("URL Rewrite - List API", () => {
         const data = listRes.urlRewrites.data ?? [];
         const found = data.find((i: any) => i.id === id || (i.requestPath === payload.requestPath && i.entityType === payload.entityType));
         expect(found).toBeTruthy();
-
-        // cleanup
-        const delRes = await client.execute(DELETE_URL_REWRITE, { id }, { withAuth: true });
-        expect(delRes.deleteUrlRewrite).toBeTruthy();
-        expect(delRes.deleteUrlRewrite.success).toBeTruthy();
     });
 });

@@ -29,7 +29,7 @@ test('Remove Particular category via graphQL api', async () => {
 
         console.log('delete Response:', deleteResponse);
 
-        expect(deleteResponse.deleteCategory.success).toBe({ withAuth: true });
+        expect(deleteResponse.deleteCategory.success).toBe(true);
         expect(deleteResponse.deleteCategory.message).toContain('Category deleted successfully');
         
     });

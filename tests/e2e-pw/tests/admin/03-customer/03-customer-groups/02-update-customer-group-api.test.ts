@@ -39,7 +39,7 @@ test.describe("update customer group details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCustomerGroupResponse, null, 2), "utf-8");
 
-        expect(updateCustomerGroupResponse.updateCustomerGroup.success).toBe({ withAuth: true });
+        expect(updateCustomerGroupResponse.updateCustomerGroup.success).toBe(true);
         expect(updateCustomerGroupResponse.updateCustomerGroup.message).toContain('Customer Group updated successfully.');
         expect(updateCustomerGroupResponse.updateCustomerGroup.customerGroup.id).toEqual(cre.createCustomerGroup.customerGroup.id);
         expect(updateCustomerGroupResponse.updateCustomerGroup.customerGroup.name).not.toEqual(cre.createCustomerGroup.customerGroup.name);

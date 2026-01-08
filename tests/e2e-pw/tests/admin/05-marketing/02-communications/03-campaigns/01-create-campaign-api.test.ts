@@ -62,7 +62,7 @@ test.describe("Create Campaign", () => {
         const filePath = path.resolve(process.cwd(), "create-campaign-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createCampaign.success).toBe({ withAuth: true });
+        expect(response.createCampaign.success).toBe(true);
         expect(response.createCampaign.campaign.name).toEqual(createInput.name);
 
         const createdID = Number(response.createCampaign.campaign.id);

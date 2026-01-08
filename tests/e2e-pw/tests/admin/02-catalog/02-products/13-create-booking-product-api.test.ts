@@ -33,7 +33,7 @@ for (let i = 0; i < 6; i++) {
 
         fs.writeFileSync(filePath, JSON.stringify(createBookingResponse, null, 2), "utf-8");
 
-        expect(createBookingResponse.createProduct.success).toBe({ withAuth: true });
+        expect(createBookingResponse.createProduct.success).toBe(true);
         expect(createBookingResponse.createProduct.message).toContain('Product created successfully.');
         expect(createBookingResponse.createProduct.product).toHaveProperty('id');
         expect(createBookingResponse.createProduct.product.sku).toEqual(createBookingProductCredentials.sku);

@@ -33,6 +33,6 @@ test('delete customer via graphQL api', async () => {
 
         console.log('delete customer Response:', deleteCustomerResponse);
 
-        expect(deleteCustomerResponse.deleteCustomer.success).toBe({ withAuth: true });        
+        expect(deleteCustomerResponse.deleteCustomer.success).toBe(true);        
     });
 });

@@ -45,7 +45,7 @@ test.describe("get all locales via GraphQL API", () => {
         expect(getAllLocalesResponse.locales).toBeDefined();
         expect(getAllLocalesResponse.locales.paginatorInfo).toBeDefined();
         expect(getAllLocalesResponse.locales.data).toBeDefined();
-        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe({ withAuth: true });
+        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe(true);
 
         // Verify paginator info
         const paginatorInfo = getAllLocalesResponse.locales.paginatorInfo;
@@ -117,7 +117,7 @@ test.describe("get all locales via GraphQL API", () => {
         // Verify filtered results
         expect(getAllLocalesResponse.locales).toBeDefined();
         expect(getAllLocalesResponse.locales.data).toBeDefined();
-        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe({ withAuth: true });
+        expect(Array.isArray(getAllLocalesResponse.locales.data)).toBe(true);
         
         // Should have at least one result matching the filter
         expect(getAllLocalesResponse.locales.data.length).toBeGreaterThanOrEqual(1);

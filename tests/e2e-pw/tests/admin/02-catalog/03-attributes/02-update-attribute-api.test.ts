@@ -8,18 +8,18 @@ import path from "path";
 test.describe("update attribute via GraphQL API", () => {
     let apiClient: GraphQLClient;
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
-
-    const createAttributeResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-attribute-createResponse.json",
-        "utf-8"
-    );
-
-    const cre = JSON.parse(createAttributeResponse);
-    console.log("Create Attribute Response Data:", cre);
-    const attribute_id = Number(cre.createAttribute.attribute.id);
-    console.log("Attribute ID to update:", attribute_id);
-
     test("update attribute via graphQL api", async () => {
+
+
+        const createAttributeResponse = fs.readFileSync(
+            "create-attribute-createResponse.json",
+            "utf-8"
+        );
+
+        const cre = JSON.parse(createAttributeResponse);
+        console.log("Create Attribute Response Data:", cre);
+        const attribute_id = Number(cre.createAttribute.attribute.id);
+        console.log("Attribute ID to update:", attribute_id);
         const randomSuffix = Date.now();
 
         const updateAttributeCredentials = {
@@ -44,22 +44,22 @@ test.describe("update attribute via GraphQL API", () => {
                     name: `Yaş Doğrulaması${randomSuffix}`,
                 },
             ],
-            isRequired: { withAuth: true },
-            isUnique: { withAuth: true },
+            isRequired: true,
+            isUnique: true,
             validation: "email",
-            valuePerLocale: { withAuth: true },
-            valuePerChannel: { withAuth: true },
-            isFilterable: { withAuth: true },
+            valuePerLocale: true,
+            valuePerChannel: true,
+            isFilterable: true,
             isConfigurable: false,
-            isVisibleOnFront: { withAuth: true },
-            isComparable: { withAuth: true },
+            isVisibleOnFront: true,
+            isComparable: true,
             swatchType: "image",
             options: [
                 {
                     adminName: "Option 1",
                     swatchValue:
                         "http://admin1.saascust.com/cache/medium/product/572/SpKvqowiHC2dkmvRweIsTXiiqmVZAv7UamsmLl6G.jpeg",
-                    isNew: "{ withAuth: true }",
+                    isNew: "true",
                     isDelete: "",
                     position: "0",
                     translations: [
@@ -85,7 +85,7 @@ test.describe("update attribute via GraphQL API", () => {
                     adminName: `Option 2${randomSuffix}`,
                     swatchValue:
                         "http://admin1.saascust.com/cache/medium/product/572/SpKvqowiHC2dkmvRweIsTXiiqmVZAv7UamsmLl6G.jpeg",
-                    isNew: "{ withAuth: true }",
+                    isNew: "true",
                     isDelete: "",
                     position: "1",
                     translations: [
@@ -135,7 +135,7 @@ test.describe("update attribute via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateAttributeResponse.updateAttribute.success).toBe({ withAuth: true });
+        expect(updateAttributeResponse.updateAttribute.success).toBe(true);
         expect(updateAttributeResponse.updateAttribute.message).toContain(
             "Attribute updated successfully."
         );
@@ -143,16 +143,16 @@ test.describe("update attribute via GraphQL API", () => {
             updateAttributeResponse.updateAttribute.attribute
         ).toHaveProperty("id");
 
-        expect (
-            updateAttributeResponse.updateAttribute.attribute.id
-        ).toEqual(cre.createAttribute.attribute.id);
+        expect(updateAttributeResponse.updateAttribute.attribute.id).toEqual(
+            cre.createAttribute.attribute.id
+        );
         expect(
             updateAttributeResponse.updateAttribute.attribute.code
         ).not.toEqual(cre.createAttribute.attribute.code);
         expect(
             updateAttributeResponse.updateAttribute.attribute.adminName
         ).not.toEqual(cre.createAttribute.attribute.adminName);
-       
+
         const updateAttributeId =
             updateAttributeResponse.updateAttribute.attribute.id;
 

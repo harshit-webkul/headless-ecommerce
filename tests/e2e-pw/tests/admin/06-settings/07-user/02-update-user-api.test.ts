@@ -29,7 +29,7 @@ test.describe("Update User", () => {
 
         console.log("Update User Response:", response);
 
-        expect(response.updateUser.success).toBe({ withAuth: true });
+        expect(response.updateUser.success).toBe(true);
         expect(response.updateUser.user.name).toEqual(updateInput.name);
         expect(response.updateUser.user.status).toEqual(updateInput.status);
     });

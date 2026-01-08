@@ -47,8 +47,10 @@ test.describe("update customer group details via GraphQL API", () => {
             };
         }
 
+    test('update customer group via graphQL api', async () => {
+
         const createCatalogRuleResponse = fs.readFileSync(
-            "vendor/bagisto/graphql-api/tests/e2e-pw/create-catalog-rule-createResponse.json",
+            "create-catalog-rule-createResponse.json",
             "utf-8"
         );
 
@@ -57,7 +59,6 @@ test.describe("update customer group details via GraphQL API", () => {
         const catalog_rule_id = Number(createCatalogrResponse.createCatalogRule.catalogRule.id);
         console.log("catalog rule ID to update:", catalog_rule_id);
 
-    test('update customer group via graphQL api', async () => {
         const randomSuffix = Date.now();
         const availableFromTo = getNowAndAfter3DaysFormatted();
 
@@ -85,7 +86,7 @@ test.describe("update customer group details via GraphQL API", () => {
             sortOrder: 1,
             actionType: "by_percent",
             discountAmount: 10,
-            endOtherRules: { withAuth: true },
+            endOtherRules: true,
     
         };
 
@@ -103,7 +104,7 @@ test.describe("update customer group details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCatalogRuleResponse, null, 2), "utf-8");
 
-        expect(updateCatalogRuleResponse.updateCatalogRule.success).toBe({ withAuth: true });
+        expect(updateCatalogRuleResponse.updateCatalogRule.success).toBe(true);
         expect(updateCatalogRuleResponse.updateCatalogRule.message).toContain('Catalog Rule updated successfully.');
         expect(updateCatalogRuleResponse.updateCatalogRule.catalogRule.name).not.toEqual(createCatalogrResponse.createCatalogRule.catalogRule.name);
         expect(updateCatalogRuleResponse.updateCatalogRule.catalogRule.description).not.toEqual(createCatalogrResponse.createCatalogRule.catalogRule.description);

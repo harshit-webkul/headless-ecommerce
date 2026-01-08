@@ -4,11 +4,6 @@ import { DBClient } from "../../../../utils/dbClient";
 import { UpdateCustomScriptMutation as UPDATE_CUSTOM_SCRIPT } from "../../../../mutations/core-configuration/custom-scripts-mutation";
 
 test.describe("Custom Scripts - Update API", () => {
-    test.beforeAll(async () => {
-        const apiClient = new GraphQLClient();
-        await apiClient.adminLogin("admin@example.com", "admin123", true);
-    });
-
     test("updates custom CSS and JavaScript and restores previous values", async () => {
         const client = new GraphQLClient();
 

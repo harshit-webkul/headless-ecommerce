@@ -38,7 +38,7 @@ test.describe("update Channel", () => {
             priority: 1,
             // latitude: "12.9716",
             // longitude: "77.5946",
-            status: { withAuth: true }
+            status: true
         };
 
         const createInventorySourceResponse = await apiClient.execute(
@@ -172,7 +172,7 @@ test.describe("update Channel", () => {
             seoKeywords: "sfsdfdsx",
             maintenanceModeText: "ertwretwrt",
             allowedIps: "",
-            isMaintenanceOn: { withAuth: true },
+            isMaintenanceOn: true,
         };
 
         const response = await apiClient.execute(
@@ -192,7 +192,7 @@ test.describe("update Channel", () => {
             "utf-8"
         );
 
-        expect(response.updateChannel.success).toBe({ withAuth: true });
+        expect(response.updateChannel.success).toBe(true);
         expect(response.updateChannel.channel.code).not.toEqual(createInput.code);
     });
 });

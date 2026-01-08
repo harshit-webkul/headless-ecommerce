@@ -29,7 +29,7 @@ test.describe("Create Customer group via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createCustomerGroupResponse, null, 2), "utf-8");
 
-        expect(createCustomerGroupResponse.createCustomerGroup.success).toBe({ withAuth: true });
+        expect(createCustomerGroupResponse.createCustomerGroup.success).toBe(true);
         expect(createCustomerGroupResponse.createCustomerGroup.message).toContain('Customer Group created successfully.');
         
         const create_customer_group_ID = Number(createCustomerGroupResponse.createCustomerGroup.customerGroup.id);

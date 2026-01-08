@@ -10,7 +10,7 @@ test.describe("update customer address details via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createCustomerResponse = fs.readFileSync(
-            "vendor/bagisto/graphql-api/tests/e2e-pw/create-customer-createResponse.json",
+            "create-customer-createResponse.json",
             "utf-8"
         );
 
@@ -19,7 +19,7 @@ test.describe("update customer address details via GraphQL API", () => {
     console.log('customer_id: ', customer_id);
 
     const createCustomerAddressResponse = fs.readFileSync(
-            "vendor/bagisto/graphql-api/tests/e2e-pw/create-customer-address-createResponse.json",
+            "create-customer-address-createResponse.json",
             "utf-8"
         );
 
@@ -44,7 +44,7 @@ test.describe("update customer address details via GraphQL API", () => {
             state: "PA",
             phone: `${randomSuffix}`,
             email: `johndoe${randomSuffix}@example.com`,
-            defaultAddress: { withAuth: true },
+            defaultAddress: true,
         };
 
         /**
@@ -61,7 +61,7 @@ test.describe("update customer address details via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(updateCustomerAddressResponse, null, 2), "utf-8");
 
-        expect(updateCustomerAddressResponse.updateCustomerAddress.success).toBe({ withAuth: true });
+        expect(updateCustomerAddressResponse.updateCustomerAddress.success).toBe(true);
         expect(updateCustomerAddressResponse.updateCustomerAddress.message).toContain("Customer's address updated successfully.");
         expect(updateCustomerAddressResponse.updateCustomerAddress.address.email).not.toEqual(cre.createCustomerAddress.address.email);
       });

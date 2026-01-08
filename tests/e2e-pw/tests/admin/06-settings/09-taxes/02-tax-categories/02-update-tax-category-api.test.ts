@@ -37,7 +37,7 @@ test.describe("Update Tax Category", () => {
 
         console.log("Update Tax Category Response:", response);
 
-        expect(response.updateTaxCategory.success).toBe({ withAuth: true });
+        expect(response.updateTaxCategory.success).toBe(true);
         expect(response.updateTaxCategory.taxCategory.name).toEqual(updateInput.name);
     });
 });

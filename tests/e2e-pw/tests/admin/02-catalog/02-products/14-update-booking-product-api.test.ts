@@ -41,7 +41,7 @@ test.describe("update booking product via GraphQL API", () => {
         const randomSuffix = Date.now();
 
         const createBookingProductResponse = fs.readFileSync(
-            `vendor/bagisto/graphql-api/tests/e2e-pw/create-booking-product0-createResponse.json`,
+            `create-booking-product0-createResponse.json`,
             "utf-8"
         );
         console.log(
@@ -60,10 +60,10 @@ test.describe("update booking product via GraphQL API", () => {
             name: `booking-${randomSuffix}`,
             urlKey: `booking-${randomSuffix}`,
             taxCategoryId: "",
-            new: { withAuth: true },
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
+            new: true,
+            featured: true,
+            visibleIndividually: true,
+            status: true,
             color: 3,
             size: 9,
             shortDescription:
@@ -322,7 +322,7 @@ test.describe("update booking product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe(true);
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );
@@ -359,7 +359,7 @@ test.describe("update booking product via GraphQL API", () => {
         const randomSuffix = Date.now();
 
         const createBookingProductResponse = fs.readFileSync(
-            `vendor/bagisto/graphql-api/tests/e2e-pw/create-booking-product1-createResponse.json`,
+            `create-booking-product1-createResponse.json`,
             "utf-8"
         );
         console.log(
@@ -378,10 +378,10 @@ test.describe("update booking product via GraphQL API", () => {
             name: `booking-${randomSuffix}`,
             urlKey: `booking-${randomSuffix}`,
             taxCategoryId: "",
-            new: { withAuth: true },
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
+            new: true,
+            featured: true,
+            visibleIndividually: true,
+            status: true,
             color: 3,
             size: 9,
             shortDescription:
@@ -484,7 +484,7 @@ test.describe("update booking product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe(true);
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );
@@ -521,7 +521,7 @@ test.describe("update booking product via GraphQL API", () => {
         const randomSuffix = Date.now();
 
         const createBookingProductResponse = fs.readFileSync(
-            `vendor/bagisto/graphql-api/tests/e2e-pw/create-booking-product2-createResponse.json`,
+            `create-booking-product2-createResponse.json`,
             "utf-8"
         );
         console.log(
@@ -540,10 +540,10 @@ test.describe("update booking product via GraphQL API", () => {
             name: `booking-${randomSuffix}`,
             urlKey: `booking-${randomSuffix}`,
             taxCategoryId: "",
-            new: { withAuth: true },
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
+            new: true,
+            featured: true,
+            visibleIndividually: true,
+            status: true,
             color: 3,
             size: 9,
             shortDescription:
@@ -687,7 +687,7 @@ test.describe("update booking product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe(true);
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

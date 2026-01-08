@@ -59,7 +59,7 @@ test.describe("Create Tax Category", () => {
         const filePath = path.resolve(process.cwd(), "create-tax-category-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createTaxCategory.success).toBe({ withAuth: true });
+        expect(response.createTaxCategory.success).toBe(true);
         expect(response.createTaxCategory.taxCategory.code).toEqual(createInput.code);
 
         const createdId = Number(response.createTaxCategory.taxCategory.id);

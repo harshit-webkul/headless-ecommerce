@@ -33,7 +33,7 @@ test.describe("Create Tax Rate", () => {
         const filePath = path.resolve(process.cwd(), "create-tax-rate-createResponse.json");
         fs.writeFileSync(filePath, JSON.stringify(response, null, 2), "utf-8");
 
-        expect(response.createTaxRate.success).toBe({ withAuth: true });
+        expect(response.createTaxRate.success).toBe(true);
         expect(response.createTaxRate.taxRate.identifier).toEqual(createInput.identifier);
         expect(response.createTaxRate.message).toContain('Tax Rate created successfully.');
 

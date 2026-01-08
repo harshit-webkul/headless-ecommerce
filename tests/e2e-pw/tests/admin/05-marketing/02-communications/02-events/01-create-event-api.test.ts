@@ -34,7 +34,7 @@ test.describe("Create events via GraphQL API", () => {
 
         fs.writeFileSync(filePath, JSON.stringify(createEventResponse, null, 2), "utf-8");
 
-        expect(createEventResponse.createEvent.success).toBe({ withAuth: true });
+        expect(createEventResponse.createEvent.success).toBe(true);
         expect(createEventResponse.createEvent.message).toContain('Event created successfully.');
         
         const create_event_ID = Number(createEventResponse.createEvent.event.id);

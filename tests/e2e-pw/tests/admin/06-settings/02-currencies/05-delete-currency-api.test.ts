@@ -23,6 +23,6 @@ test.describe("Delete currency via GraphQL API", () => {
         );
 
         console.log("Delete Currency Response:", response);
-        expect(response.deleteCurrency.success).toBe({ withAuth: true });
+        expect(response.deleteCurrency.success).toBe(true);
     });
 });

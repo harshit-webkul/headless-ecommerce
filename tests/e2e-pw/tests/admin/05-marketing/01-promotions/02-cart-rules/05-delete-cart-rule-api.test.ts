@@ -32,7 +32,7 @@ test('delete catalog rule via graphQL api', async () => {
 
         console.log('delete cart rule Response:', deleteCartRuleResponse);
 
-        expect(deleteCartRuleResponse.deleteCartRule.success).toBe({ withAuth: true }); 
+        expect(deleteCartRuleResponse.deleteCartRule.success).toBe(true); 
         expect(deleteCartRuleResponse.deleteCartRule.message).toContain('Cart Rule deleted successfully'); 
     });
 });

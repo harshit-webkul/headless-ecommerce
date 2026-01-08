@@ -23,7 +23,7 @@ test.describe("Delete User", () => {
 
         console.log("Delete User Response:", response);
 
-        expect(response.deleteUser.success).toBe({ withAuth: true });
+        expect(response.deleteUser.success).toBe(true);
 
         const userInDB = await DBClient.getRow("SELECT * FROM admins WHERE id = ?", [userId]);
 

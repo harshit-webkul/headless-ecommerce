@@ -12,7 +12,7 @@ test.describe("Get All catogories via GraphQL API", () => {
         const randomSuffix = Date.now();
 
         const getAllcategoriesCredentials = {
-            slug: "root",
+            // slug: "root",
             // type: "simple",
             // sku: "simple",
             // name: "Booking",
@@ -25,9 +25,7 @@ test.describe("Get All catogories via GraphQL API", () => {
          */
         const getAllCategoriesResponse = await apiClient.execute(
             getCategoriesMutation,
-            {
-                slug: getAllcategoriesCredentials.slug,
-            },
+            {},
             { withAuth: true }
         );
 

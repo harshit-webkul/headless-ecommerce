@@ -29,7 +29,7 @@ test.describe("Update Role", () => {
 
         console.log("Update Role Response:", response);
 
-        expect(response.updateRole.success).toBe({ withAuth: true });
+        expect(response.updateRole.success).toBe(true);
         expect(response.updateRole.role.name).toEqual(updateInput.name);
     });
 });

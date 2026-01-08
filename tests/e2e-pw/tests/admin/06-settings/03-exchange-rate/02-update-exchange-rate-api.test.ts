@@ -50,7 +50,7 @@ test.describe("Update Exchange Rate", () => {
             "utf-8"
         );
 
-        expect(response.updateExchangeRate.success).toBe({ withAuth: true });
+        expect(response.updateExchangeRate.success).toBe(true);
         expect(response.updateExchangeRate.exchangeRate.id).toBe(exchangeRateId.toString());
         expect(response.updateExchangeRate.message).toContain('Exchange rate updated successfully.');
         expect(response.updateExchangeRate.exchangeRate.rate).not.toEqual(createResponse.createExchangeRate.exchangeRate.rate);

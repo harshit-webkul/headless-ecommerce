@@ -10,7 +10,7 @@ test.describe("update configurable product via GraphQL API", () => {
     apiClient = new GraphQLClient(GraphQLClient.baseURL);
 
     const createConfigProductResponse = fs.readFileSync(
-        "vendor/bagisto/graphql-api/tests/e2e-pw/create-config-product-response.json",
+        "create-config-product-response.json",
         "utf-8"
     );
     console.log("Create Product Response from file:", createConfigProductResponse);
@@ -32,11 +32,11 @@ test.describe("update configurable product via GraphQL API", () => {
             urlKey: `home-decor-2222${randomSuffix}`,
             productNumber: `4561564${randomSuffix}`,
             taxCategoryId: "",
-            new: { withAuth: true },
-            featured: { withAuth: true },
-            visibleIndividually: { withAuth: true },
-            status: { withAuth: true },
-            guestCheckout: { withAuth: true },
+            new: true,
+            featured: true,
+            visibleIndividually: true,
+            status: true,
+            guestCheckout: true,
             color: null,
             size: null,
             shortDescription: "dfdsfsdfdsfiption",
@@ -75,7 +75,7 @@ test.describe("update configurable product via GraphQL API", () => {
                     ],
                     price: 10.0,
                     weight: 1,
-                    status: { withAuth: true },
+                    status: true,
                     images: [],
                 },
                 {
@@ -92,7 +92,7 @@ test.describe("update configurable product via GraphQL API", () => {
                     ],
                     price: 7.5,
                     weight: 1.45,
-                    status: { withAuth: true },
+                    status: true,
                     images: [],
                 },
             ],
@@ -126,7 +126,7 @@ test.describe("update configurable product via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(updateResponse.updateProduct.success).toBe({ withAuth: true });
+        expect(updateResponse.updateProduct.success).toBe(true);
         expect(updateResponse.updateProduct.message).toContain(
             "Product updated successfully."
         );

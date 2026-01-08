@@ -48,7 +48,8 @@ test.describe("customer create order via GraphQL API", () => {
             "utf-8"
         );
 
-        expect(customerCreateOrderResponse.createOrder.success).toEqual({ withAuth: true });
+        expect(customerCreateOrderResponse.createOrder.success).toEqual(true);
+        expect(customerCreateOrderResponse.createOrder.cart.customerId).toEqual(cre.createCustomer.customer.id)
 
         
     });

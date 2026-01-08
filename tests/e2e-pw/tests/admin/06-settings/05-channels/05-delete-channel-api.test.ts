@@ -22,6 +22,6 @@ test.describe("Delete Channel", () => {
         );
 
         console.log("Delete Channel Response:", response);
-        expect(response.deleteChannel.success).toBe({ withAuth: true });
+        expect(response.deleteChannel.success).toBe(true);
     });
 });

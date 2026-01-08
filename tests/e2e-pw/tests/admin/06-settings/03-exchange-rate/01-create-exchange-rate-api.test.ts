@@ -61,7 +61,7 @@ test.describe("Create Exchange Rate", () => {
             "utf-8"
         );
 
-        expect(response.createExchangeRate.success).toBe({ withAuth: true });
+        expect(response.createExchangeRate.success).toBe(true);
         expect(response.createExchangeRate.exchangeRate.rate).toBe(createInput.rate);
         expect(response.createExchangeRate.message).toContain('Exchange rate created successfully.');
     });

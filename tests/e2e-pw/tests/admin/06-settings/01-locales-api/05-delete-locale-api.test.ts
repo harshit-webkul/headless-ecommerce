@@ -32,7 +32,7 @@ test('delete locale via graphQL api', async () => {
 
         console.log('delete catalog rule Response:', deleteLocaleResponse);
 
-        expect(deleteLocaleResponse.deleteLocale.success).toBe({ withAuth: true }); 
+        expect(deleteLocaleResponse.deleteLocale.success).toBe(true); 
         expect(deleteLocaleResponse.deleteLocale.message).toContain('Locale deleted successfully'); 
     });
 });
