@@ -1,8 +1,9 @@
 export const getAllAddessesMutation = `
-    query customerAddresses($first: Int, $page: Int) {
+    query customerAddresses($first: Int, $page: Int, $input: FilterCustomerAddressInput) {
 	customerAddresses(
         first:$first
         page: $page
+        input: $input
     ) {
         paginatorInfo {
             count
