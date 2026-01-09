@@ -36,6 +36,7 @@ import { DBClient } from '../../../utils/dbClient';
 
       expect(res.customerSignUp).toBeTruthy();
       expect(res.customerSignUp.success).toBeTruthy();
+      expect (res.customerSignUp.message).toContain('Success: Customer registered and login successfully.');
       expect(res.customerSignUp.accessToken).toBeTruthy();
       expect(res.customerSignUp.customer).toBeTruthy();
       expect(res.customerSignUp.customer.email).toEqual(emailToUse);
@@ -46,5 +47,8 @@ import { DBClient } from '../../../utils/dbClient';
 
       const filePath = path.resolve(process.cwd(), 'signup-customer-shop-createResponse.json');
       fs.writeFileSync(filePath, JSON.stringify(res, null, 2), 'utf-8');
+
+      const customer_payload = path.resolve(process.cwd(), 'customer-payload-shop-createResponse.json');
+      fs.writeFileSync(customer_payload, JSON.stringify(input, null, 2), 'utf-8');
     });
   });
