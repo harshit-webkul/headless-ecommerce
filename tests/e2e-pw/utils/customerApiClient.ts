@@ -66,7 +66,7 @@ export class GraphQLCustomerClient {
         };
     }
 
-    async customerLogin(email: string, password: string, remember = true) {
+    async customerLogin(email: string, password: string, remember = true, deviceToken: string, deviceName: string) {
         if (this.customerToken) return; // Already logged in
 
         await this.init();
@@ -75,7 +75,7 @@ export class GraphQLCustomerClient {
             data: {
                 query: customerSignInMutation,
                 variables: {
-                    input: { email, password, remember },
+                    input: { email, password, remember, deviceToken, deviceName },
                 },
             },
         });
@@ -86,19 +86,15 @@ export class GraphQLCustomerClient {
         console.log("Login Response Body:", body.data);
 
         expect(response.status()).toBe(200);
-        expect(body).toHaveProperty("data.userLogin.success", true);
-        expect(body).toHaveProperty("data.userLogin.accessToken");
-        expect(body).toHaveProperty("data.userLogin.user.email", email);
+        expect(body.data.customerLogin.success).toBe(true);
+        expect(body.data.customerLogin.customer.email).toBe(email);
+
         expect(body).toHaveProperty(
-            "data.userLogin.user.role.name",
-            "Administrator"
-        );
-        expect(body).toHaveProperty(
-            "data.userLogin.message",
-            "Success: User login successfully."
+            "data.customerLogin.message",
+            "Success: Customer login successful."
         );
 
-        expect(body.data.userLogin.success).toBe(true);
+        expect(body.data.customerLogin.success).toBe(true);
 
         if (body.errors?.length) {
             throw new Error(
@@ -106,7 +102,8 @@ export class GraphQLCustomerClient {
             );
         }
 
-        this.customerToken = body.data?.userLogin?.accessToken;
+        this.customerToken = body.data?.customerLogin?.accessToken;
+        console.log(this.customerToken);
 
         if (!this.customerToken) {
             throw new Error(
@@ -140,7 +137,7 @@ export class GraphQLCustomerClient {
         saveCustomerToken(token);
     }
 
-    async execute<T = any>(
+    async customerExecute<T = any>(
         query: string,
         variables: Record<string, any> = {},
         options?: {
@@ -152,6 +149,7 @@ export class GraphQLCustomerClient {
 
         const headers: Record<string, string> = {};
 
+        console.log('this.customerToken: ', this.customerToken);
         if (options?.withAuth !== false && this.customerToken) {
             Object.assign(headers, this.authCustomerHeader());
         }

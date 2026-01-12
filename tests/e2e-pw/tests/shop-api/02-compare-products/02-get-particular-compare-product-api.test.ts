@@ -8,10 +8,6 @@ import { DBClient } from "../../../utils/dbClient";
 test.describe("Get Particular Compare Product API", () => {
     test("returns the compare product by id", async () => {
         const filePath = path.resolve(process.cwd(), "compare-product-shop-createResponse.json");
-        if (!fs.existsSync(filePath)) {
-            test.skip();
-            return;
-        }
 
         const raw = fs.readFileSync(filePath, "utf-8");
         const saved = JSON.parse(raw);
@@ -24,14 +20,8 @@ test.describe("Get Particular Compare Product API", () => {
         }
 
         const customerApiClient = new GraphQLCustomerClient();
-        // ensure a customer token is present (will throw if not logged in)
-        const token = customerApiClient.loadSavedCustomerToken();
-        if (!token) {
-            test.skip();
-            return;
-        }
 
-        const res = await customerApiClient.customerExecute<any>(getParticularCompareProductsQuery, { id: compareId }, { withAuth: true });
+        const res = await customerApiClient.customerExecute(getParticularCompareProductsQuery, { id: compareId }, { withAuth: true });
 
         expect(res.compareProduct).toBeTruthy();
         expect(res.compareProduct.id).toBeDefined();
